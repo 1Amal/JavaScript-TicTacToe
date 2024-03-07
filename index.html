@@ -20,12 +20,13 @@
         <div>
             <h1>Technical info for Software Engineers</h1>
             <p>Tech Stack:JavaScript, HTML and CSS </p>
+            <a href="https://github.com/1Amal/JavaScript-TicTacToe">Source Code available on GitHub or you can inspect the code using Firefox or Chrome Developer tools by right clicking this page and selecting "inspect"</a>
             <p>Architecture design and coding by Amal Kariyawasam, 2024 March</p>
 
             <h2>Tic Tac Toe Game Architecture</h2>
             <h3>Game Logic</h3>
             <ul>
-                <li>Two human players or One Human Player and One AIBot</li>
+                <li>One Human Player and One AIBot</li>
                 <li>Game can have multiple rounds and this will be saved in round numbers and number of wins for each player</li>
                 <li>3 x 3 Grid with clickable buttons that are numbered 1,2,3,4,5,6,7,8,9 </li>
                 <li>Two Markers, Marker 1: X,  Marker 2: O</li>
@@ -88,8 +89,7 @@
 
                 <h3>Main Coding rules</h3>
                     <ul>
-                        <li>Use Object oriented design to create the game and no global variables, store all the the variables inside factories.</li>
-                        <li>Main goal here is to have as little global code as possible.</li>
+                        <li>Use Object oriented design to create the game and no global variables, store all the the variables inside factories.Main goal here is to have as little global code as possible.</li>
                         <li>If only a single instance of something is required (e.g. the gameboard, the displayController etc.) then wrap the factory inside an IIFE (module pattern) so it cannot be reused to create additional instances.</li>
                         <li>Decide on which Objects to store the relevant logic so code is easily maintainable</li>
                         <li>First create a working game on the browser console. Test and after making sure the game work start work on the User interface</li>
@@ -99,32 +99,33 @@
 
                 <h3>User Interface design (HTML and CSS)</h3>
                     <ul>
-                        <li>Game board 3x3 Grid using buttons with id's assigned to grid numbers 1,2,3,4,5,6,7,8,9</li>
-                        <li>Display Player 1 Name</li>
-                        <li>Display Player 2 Name</li>
+                        <li>Game board 3x3 Grid using buttons with HTML id's assigned to grid numbers 1,2,3,4,5,6,7,8,9</li>
+                        <li>Display Player 1 Name & No of wins</li>
+                        <li>Display AiBot Name & No of wins</li>
                         <li>Display Round Number</li>
-                        <li>Display No of wins Player 1</li>
-                        <li>Display No of wins Player 2 or AiBot</li>
-                        <li>Two radio buttons to select Game Type: 1 Player and AiBot, 2 Players </li>
-                        <li>Submit Button to set the game type from above radio buttons</li>
                         <li>Text Box to Enter Player 1 Name</li>
-                        <li>Only visible if it is two human players: Text Box to Enter Player 2 Name</li>
-                        <li>Button to Submit Player Names</li>
+                        <li>Button to Submit Player1 Name</li>
                         <li>Reset Button to reset the game and clear the screen</li>
                         
                     </ul>
-                <h3>Logic design(JavaScript)</h3>
-                <p>Code will be broken up into the Objects as follows;</p>        
+                <h3>Logic design (JavaScript)</h3>
+                <p>Code will be broken up into three Objects as follows for code readability and memory efficiency;</p>        
                 
-                <h4>gameBoardObject</h4>
+                <h4>gameMemory: Used only as a memory to store the player positions, player details, player statistics, etc..</h4>
                     <ul>
-                        <li>Used to store the player positions in an array</li>
-                        <li>Assign a 3x3 grid based naming convention for  i.e. Rows:1 2 3 Columns:4 5 6</li>
-                        <li>Get the position player has selected and store the value as two values of Row number and column number i.e. [1, 4, X] with the Marker</li>
-                        <li>Store the gameboard as an array inside this object: playerOneArray, playerTwoArray, playerOneDetails, playertwoDetails</li>
+                        <li>
+                            {name:"playerName",marker:"X", score:"playerScore",roundNo:"roundNo",wins:"wins",playerBoardPosition:[turn1:"empty",turn2:"empty",turn3:"empty", turn4:"empty"]}
+                            
+                        </li>
+                        <li>[AiBot:]</li>
+                        <li>Object to track whether game board grid is empty or not gameBoard:{1:"empty",2:"empty",3:"empty",4:"empty",5:"empty",6:"empty",7:"empty",8:"empty",9:"empty"}</li>
+                        <li>Assign a 3x3 grid based naming convention and store it in an boarArray  i.e. 1 2 3 4 5 6 7 8 9</li>
+                        <li>Get the position player has selected and store the value in "playerBoardPosition" of player1 and AiBot to see who won and "gameBoard" so game can keep track of used and free grid slots</li>
+                        <li></li>
+
                     </ul>
                 
-                <h4>gameControlFlow" : Object to control Flow of the game (Check winning condition, Keep track of number of turns, )</h4>
+                <h4>gameLogic: Object to control Flow of the game and the logic(Check winning condition by comparing values in gameBoardObject, Keep track of number of turns,  )</h4>
                     <ul>
                         <li>Start Game</li>
                         <li>Check for Game score</li>
@@ -134,32 +135,16 @@
                         
 
                     </ul>
-                <h4>displayController": Object to update the HTML Dom and to received user input</h4>
+                <h4>displayController: Only function is to check player 1 inputs then store to the gameMemory and update the display with data stored in the gameMemory to update the HTML Dom and to received user input</h4>
                     <ul>
+                        <li>Listen for user clicks in the 9 grids</li>
                         <li>Receive input from the player</li>
                         <li>Display game status on the display</li>
                         <li>Button to change name</li>
                         <li>Button to Restart game</li>
                         <li>Game result display element</li>
                     </ul>
-                
-                <h4>playerObject</h4>
-                    <ul>
-                        <li>Able to save details of two players</li>
-                        <li>Player 1 Array: Name, Score, Selected grid locations</li>
-                        <li>Used to store the Player name, Score in an array</li>
-                        <li>Create new players</li>
-                        <li>Delete players</li>
-                        <li>Has a aiBot which can pay with the Human player</li>
-                    </ul>
-    
-                
-                
-                
-                
-                
-                
-                
+           
 
         </div>
     </div>
