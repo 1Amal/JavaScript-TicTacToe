@@ -1,2 +1,2 @@
 # JavaScript-TicTacToe
-Tic Tac Toe Game developed using JavaScript, HTML and CSS
+All the technical design details are saved in the Index.html and can be viewed live by visiting https://1amal.github.io/JavaScript-TicTacToe/
