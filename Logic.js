@@ -1,11 +1,19 @@
-/* Amal K. 2024 March */
+/* Amal K. 2024 March 
+Tic Tac Toe Game
+*/
 
-function gameLogic ()
+const gameLogic =function  ()
 {
+    gameMemory.gameStatus.aiBotTurns.push(1,2,3);
+    gameMemory.playerDetails.playerName="Amal";
 
+
+
+    // displayController;
 
 
 }
+
 
 const gameMemory= (function ()
 {
@@ -25,31 +33,23 @@ const gameMemory= (function ()
 
                         }
  
-    const gameBoard=    {playerTurns:[],
+    const gameStatus=    {playerTurns:[],
                         aiBotTurns:[],
                         roundNo:0,
-                        1:"",
-                        2:"",
-                        3:"",
-                        4:"",
-                        5:"",
-                        6:"",
-                        7:"",
-                        8:"",
-                        9:"",
+                        gameBoard:[],
                         }
 
-    return {playerDetails,aiBotDetails, gameBoard}
+    return {playerDetails,aiBotDetails, gameStatus}
 })();
 
 
 
-function displayController ()
+const displayController= (function  ()
 {
-
-}
-
-console.dir(gameMemory.gameBoard.aiBotTurns.push("Hi"));
+    return (console.log(gameMemory));
 
 
+})();
 
+
+gameLogic();
