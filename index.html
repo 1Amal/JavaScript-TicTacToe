@@ -83,8 +83,8 @@
 
                 </p>
 
-                <h4>Conditions for Draw</h4>
-                <p>Anything that is not in the above win conditions will be a draw</p>
+                <h4>Conditions for Tie/Draw</h4>
+                <p>Anything that is not in the above win conditions will be a draw/Tie after all 9 grid slots have been filled</p>
 
 
                 <h3>Main Coding rules</h3>
@@ -113,11 +113,29 @@
                 
                 <h4>gameMemory: Used only as a memory to store the player positions, player details, player statistics, etc..</h4>
                     <ul>
-                        <li>
-                            {name:"playerName",marker:"X", score:"playerScore",roundNo:"roundNo",wins:"wins",playerBoardPosition:[turn1:"empty",turn2:"empty",turn3:"empty", turn4:"empty"]}
-                            
+                        <li>Variable for Player:
+                            let playerName="";
+                            const playerMarker="X";
+                            let playerScore=0;
+                            let playerWins=0;
+                            let playerTurns=[];
                         </li>
-                        <li>[AiBot:]</li>
+                        
+                    
+                        <li>Variables for AiBot
+                            const aiBotName="AiBot";
+                            let aiBotScore=0;
+                            let aiBotWins=0;
+                            let aiBotTurns=[];
+                        </li>
+
+                        <li>
+                            Variables to store other data
+                            let roundNo=0;
+                        </li>
+                    
+
+
                         <li>Object to track whether game board grid is empty or not gameBoard:{1:"empty",2:"empty",3:"empty",4:"empty",5:"empty",6:"empty",7:"empty",8:"empty",9:"empty"}</li>
                         <li>Assign a 3x3 grid based naming convention and store it in an boarArray  i.e. 1 2 3 4 5 6 7 8 9</li>
                         <li>Get the position player has selected and store the value in "playerBoardPosition" of player1 and AiBot to see who won and "gameBoard" so game can keep track of used and free grid slots</li>
