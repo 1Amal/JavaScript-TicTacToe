@@ -2,11 +2,24 @@
 Tic Tac Toe Game
 */
 
-const gameLogic =function  ()
+const gameLogic =function (gameLogic)
 {
-    gameMemory.gameStatus.aiBotTurns.push(1,2,3);
-    gameMemory.playerDetails.playerName="Amal";
 
+
+    function gameStart(start)
+    {
+
+        gameMemory.gameStatus.aiBotTurns.push(1,2,3);
+        gameMemory.playerDetails.playerName="Amal";
+        console.log("Game started");
+        console.log(gameMemory.playerDetails.playerName);
+        console.log(gameMemory.gameStatus.aiBotTurns);
+
+
+        // return {gameStart}
+    }
+
+    return{gameStart}
 
 
     // displayController;
@@ -20,7 +33,6 @@ const gameMemory= (function ()
     //Variable for Player
     const playerDetails={playerName:"",
                          playerMarker:"X",
-                         playerScore:0,
                          playerWins:0,
         
                         }
@@ -28,7 +40,6 @@ const gameMemory= (function ()
     //Variables for AiBot
     const aiBotDetails={
                         aiBotName:"AiBot",
-                        aiBotScore:0,
                         aiBotWins:0,
 
                         }
@@ -52,4 +63,5 @@ const displayController= (function  ()
 })();
 
 
-gameLogic();
+const amal=gameLogic('Amal');
+amal.gameStart();

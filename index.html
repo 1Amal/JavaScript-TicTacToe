@@ -109,11 +109,32 @@
                         
                     </ul>
                 <h3>Logic design (JavaScript)</h3>
-                <p>Code will be broken up into three Objects as follows for code readability and memory efficiency;</p>        
+                <p>Code will be broken up into three Objects as follows for code readability and memory efficiency;</p> 
+                
+                <h4>Pseudo Code</h4>
+                <ol>
+                    <li>Game Loaded, check whether game has been run before then randomly select whether the player or AiBot will go first</li>
+                    <li>If it is the first time; 
+                        <ul><li>Prompt for Player Name</li>
+                            <li>When Player clicks submit button store the player name and start the game</li>
+                        </ul>
+                    <li>If Game has been played before;
+                        <ul><li>Update the following variables: Round no, Winnings</li>
+                            <li>Set following variables to zero: "gameBoard" array </li>
+                        </ul>
+                    </li>
+                    </li>
+                    
+                    <li>Check how many turn numbers have been made, Prompt the Player to make selection on the grid and store the grid location on the "gameBoard" array and player , update the turn number and update the display</li>
+                    <li>AiBot will make a calculation and store the grid location on the "gameBoard" array, update the turn number and update the display </li>
+                    <li>Continue this till the fifth turn then start checking the condition for wins till the 9th turn</li>
+                    <li>Keep checking from fifth turn If player or AiBot has fulfilled any of conditions for wins. If fulfils winning rules declare the name of the winner if not keep playing until the end of the 9th turn</li>
+                    
+                </ol>
                 
                 <h4>gameMemory: Used only as a memory to store the player positions, player details, player statistics, etc..</h4>
                     <ul>
-                        <li>Variable for Player:
+                        <li>Variables for Player:
                             let playerName="";
                             const playerMarker="X";
                             let playerScore=0;
