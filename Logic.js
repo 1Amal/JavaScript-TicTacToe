@@ -2,24 +2,59 @@
 Tic Tac Toe Game
 */
 
-const gameLogic =function (gameLogic)
+const gameLogic =function ()
 {
 
 
     function gameStart(start)
     {
 
-        gameMemory.gameStatus.aiBotTurns.push(1,2,3);
-        gameMemory.playerDetails.playerName="Amal";
-        console.log("Game started");
-        console.log(gameMemory.playerDetails.playerName);
-        console.log(gameMemory.gameStatus.aiBotTurns);
+        if (gameMemory.gameStatus.roundNo>=1 && gameMemory.gameStatus.roundNo<9)
+            {
+                console.log("Welcome to next turn");
+                gameMemory.gameStatus.roundNo+=1;//Advance the round no by 1
+                console.log(gameMemory.gameStatus.roundNo);
+                gameMemory.gameStatus.gameBoard=[]; // Empty the array
+                console.log(gameMemory.gameStatus.gameBoard);
+
+            }
+        
+        else if(gameMemory.gameStatus.roundNo>=9)
+        {
+            console.log("Game Over")
+        }
+        
+        else{
+            console.log("Game has not been run Please input your Name ");
+
+            // gameMemory.playerDetails.playerName=prompt();
+            gameMemory.gameStatus.roundNo=+1;
+            console.log(gameMemory.playerDetails.playerName);
+            gameMemory.gameStatus.gameBoard=[]; // Empty the array
+            gameMemory.gameStatus.gameBoard.splice(1, 1,"hello")
 
 
-        // return {gameStart}
+            console.log(gameMemory.gameStatus.gameBoard);
+        }
+
+    
+        // gameMemory.gameStatus.aiBotTurns.push(1,2,3);
+        // gameMemory.playerDetails.playerName="Amal";
+        // console.log(gameMemory.playerDetails.playerName);
+        // console.log(gameMemory.gameStatus.aiBotTurns);
+
+
+        return {gameStart}
     }
 
-    return{gameStart}
+    function randomChoice()
+    {
+        let randomNumber=Math.floor(Math.random()*2);
+        return {randomNumber}
+
+    }    
+
+    return{gameStart,randomChoice}
 
 
     // displayController;
@@ -63,5 +98,8 @@ const displayController= (function  ()
 })();
 
 
-const amal=gameLogic('Amal');
+const amal=gameLogic();
 amal.gameStart();
+
+let consoleTest=amal.randomChoice();
+console.log(consoleTest);
