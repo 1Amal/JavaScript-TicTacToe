@@ -54,7 +54,15 @@ const gameLogic =function ()
 
     }    
 
-    return{gameStart,randomChoice}
+    function aiBot()
+    {
+        const random1=gameLogic;
+        const numberIs=random1.randomChoice;
+        gameMemory.gameStatus.gameBoard[0];
+        return {numberIs}
+    }
+
+    return{gameStart,randomChoice,aiBot} // This will return the Factory functions
 
 
     // displayController;
@@ -101,5 +109,6 @@ const displayController= (function  ()
 const amal=gameLogic();
 amal.gameStart();
 
-let consoleTest=amal.randomChoice();
+let consoleTest=amal.aiBot();
+
 console.log(consoleTest);
