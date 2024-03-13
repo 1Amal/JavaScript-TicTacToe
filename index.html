@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./Styles.css">
 </head>
 <body>
+
     <div class="container">
         <div>
             <h1>Tic Tac Toe Game with AI (Artificial intelligence) opponent</h1>
@@ -29,7 +30,7 @@
                 <li>One Human Player and One AIBot</li>
                 <li>Game can have multiple rounds and this will be saved in round numbers and number of wins for each player</li>
                 <li>3 x 3 Grid with clickable buttons that are numbered 1,2,3,4,5,6,7,8,9 </li>
-                <li>Two Markers, Marker 1: X,  Marker 2: O</li>
+                <li>Two Markers, Marker 1: Player Initials (Restricted to 5 characters),  Marker 2: AiBot</li>
                 <li>Players, play turn by turn and game will be over after maximum of 9 turns either in a draw or in a win</li>
                 <li>First player to get 3 of the same mark on a straight line will be the winner before the 9 turn are up according to the following conditions;</li>
             </ul>
@@ -126,7 +127,7 @@
                     </li>
                     <li>Randomly select whether the player or AiBot will go first</li>
                     
-                    <li>Check how many turn numbers have been made, Prompt the Player to make selection on the grid and store the grid location on the "gameBoard" array and player , update the turn number and update the display</li>
+                    <li>Check how many turn numbers have been made , Prompt the Player to make selection on the grid and store the grid location on the "gameBoard" array and player , update the turn number and update the display</li>
                     <li>AiBot will make a calculation and store the grid location on the "gameBoard" array, update the turn number and update the display </li>
                     <li>Continue this till the fifth turn then start checking the condition for wins till the 9th turn</li>
                     <li>Keep checking from fifth turn If player or AiBot has fulfilled any of conditions for wins. If fulfils winning rules declare the name of the winner if not keep playing until the end of the 9th turn</li>
@@ -137,8 +138,6 @@
                     <ul>
                         <li>Variables for Player:
                             let playerName="";
-                            const playerMarker="X";
-                            let playerScore=0;
                             let playerWins=0;
                             let playerTurns=[];
                         </li>
@@ -146,7 +145,6 @@
                     
                         <li>Variables for AiBot
                             const aiBotName="AiBot";
-                            let aiBotScore=0;
                             let aiBotWins=0;
                             let aiBotTurns=[];
                         </li>
@@ -155,20 +153,17 @@
                             Variables to store other data
                             let roundNo=0;
                         </li>
-                    
-
 
                         <li>Object to track whether game board grid is empty or not gameBoard:{1:"empty",2:"empty",3:"empty",4:"empty",5:"empty",6:"empty",7:"empty",8:"empty",9:"empty"}</li>
-                        <li>Assign a 3x3 grid based naming convention and store it in an boarArray  i.e. 1 2 3 4 5 6 7 8 9</li>
+                        <li>Assign a 3x3 grid based naming convention and store it in an boardArray  i.e. 1 2 3 4 5 6 7 8 9</li>
                         <li>Get the position player has selected and store the value in "playerBoardPosition" of player1 and AiBot to see who won and "gameBoard" so game can keep track of used and free grid slots</li>
                         <li></li>
 
                     </ul>
                 
-                <h4>gameLogic: Object to control Flow of the game and the logic(Check winning condition by comparing values in gameBoardObject, Keep track of number of turns,  )</h4>
+                <h4>gameLogic: Object to control Flow of the game and the logic(Check whether the game has been run before, Check winning condition by comparing values in gameBoardObject, Keep track of number of turns and after 9 turns Game Over,  decide who will take the next turn)</h4>
                     <ul>
                         <li>Start Game</li>
-                        <li>Check for Game score</li>
                         <li>Check for Game win</li>
                         <li>Check for Game Ties</li>
                         <li>Keep track of player and computer Marker (i.e. O X)</li>
@@ -177,12 +172,12 @@
                     </ul>
                 <h4>displayController: Only function is to check player 1 inputs then store to the gameMemory and update the display with data stored in the gameMemory to update the HTML Dom and to received user input</h4>
                     <ul>
-                        <li>Listen for user clicks in the 9 grids</li>
-                        <li>Receive input from the player</li>
-                        <li>Display game status on the display</li>
-                        <li>Button to change name</li>
+                        
+                        <li> Create and Listen for user clicks in the 9 grids and store them in the GameMemory</li>
+                        <li>Update the AiBot choices on the display</li>
+                        <li>Check and display the Game score</li>
+                        <li>Button to change Player name</li>
                         <li>Button to Restart game</li>
-                        <li>Game result display element</li>
                     </ul>
            
 
@@ -193,5 +188,6 @@
 
 
 <script src="./Logic.js"></script>
+<!-- <script src="./test.js"></script> -->
 </body>
 </html>
