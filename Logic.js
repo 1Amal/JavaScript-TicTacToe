@@ -56,9 +56,10 @@ const gameLogic =function ()
 
     function nextTurn()
     {
-        if (gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName)
+        if (gameMemory.gameStatus.lastTurn===gameMemory[playerDetails][playerName])
         {
-           console.log("Last Turn by ${gameMemory.playerDetails.playerName}");
+            const test2=gameMemory[playerDetails][playerName];
+           console.log(test2);
         }
 
         else if (gameMemory.gameStatus.lastTurn==="AiBot")
@@ -131,8 +132,8 @@ const displayController= (function  ()
 const amal=gameLogic();
 amal.gameStart();
 
-let consoleTest=amal.nextTurn();
-gameMemory.gameStatus.lastTurn="AiBot";
+let consoleTest=gameMemory.gameStatus.lastTurn;
+gameMemory.gameStatus.lastTurn="Amal";
 
 
 console.log(consoleTest);
