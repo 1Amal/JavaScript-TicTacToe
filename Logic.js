@@ -54,6 +54,27 @@ const gameLogic =function ()
 
     }    
 
+    function nextTurn()
+    {
+        if (gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName)
+        {
+           console.log("Last Turn by ${gameMemory.playerDetails.playerName}");
+        }
+
+        else if (gameMemory.gameStatus.lastTurn==="AiBot")
+        {
+            console.log("Last Turn by AiBot");
+
+        }
+
+        else
+        {
+            return console.log("Invalid")
+        }
+    
+
+    } 
+
     function aiBot()
     {
         const random1=gameLogic;
@@ -62,7 +83,7 @@ const gameLogic =function ()
         return {numberIs}
     }
 
-    return{gameStart,randomChoice,aiBot} // This will return the Factory functions
+    return{gameStart,randomChoice,aiBot, nextTurn} // This will return the Factory functions
 
 
     // displayController;
@@ -87,7 +108,8 @@ const gameMemory= (function ()
 
                         }
  
-    const gameStatus=    {playerTurns:[],
+    const gameStatus=    {lastTurn:"",
+                        playerTurns:[],
                         aiBotTurns:[],
                         roundNo:0,
                         gameBoard:[],
@@ -109,6 +131,8 @@ const displayController= (function  ()
 const amal=gameLogic();
 amal.gameStart();
 
-let consoleTest=amal.aiBot();
+let consoleTest=amal.nextTurn();
+gameMemory.gameStatus.lastTurn="AiBot";
+
 
 console.log(consoleTest);
