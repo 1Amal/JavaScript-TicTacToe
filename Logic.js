@@ -2,50 +2,46 @@
 Tic Tac Toe Game
 */
 
+// *.*.*.*.*.*.*.*.*.*. Game Logic *.*.*.*.*.*.*.*.*.*.
+
 const gameLogic =function ()
 {
 
 
-    function gameStart(start)
-    {
+    // function gameStart(start)
+    // {
 
-        if (gameMemory.gameStatus.roundNo>=1 && gameMemory.gameStatus.roundNo<9)
-            {
-                console.log("Welcome to next turn");
-                gameMemory.gameStatus.roundNo+=1;//Advance the round no by 1
-                console.log(gameMemory.gameStatus.roundNo);
-                gameMemory.gameStatus.gameBoard=[]; // Empty the array
-                console.log(gameMemory.gameStatus.gameBoard);
+    //     if (gameMemory.gameStatus.roundNo>=1 && gameMemory.gameStatus.roundNo<9)
+    //         {
+    //             console.log("Welcome to next turn");
+    //             gameMemory.gameStatus.roundNo+=1;//Advance the round no by 1
+    //             console.log(gameMemory.gameStatus.roundNo);
+    //             gameMemory.gameStatus.gameBoard=[]; // Empty the array
+    //             console.log(gameMemory.gameStatus.gameBoard);
 
-            }
+
+    //         }
         
-        else if(gameMemory.gameStatus.roundNo>=9)
-        {
-            console.log("Game Over")
-        }
+    //     else if(gameMemory.gameStatus.roundNo>=9)
+    //     {
+    //         console.log("Game Over")
+    //     }
         
-        else{
-            console.log("Game has not been run Please input your Name ");
+    //     else{
+    //         console.log("Game has not been run Please input your Name ");
 
-            // gameMemory.playerDetails.playerName=prompt();
-            gameMemory.gameStatus.roundNo=+1;
-            console.log(gameMemory.playerDetails.playerName);
-            gameMemory.gameStatus.gameBoard=[]; // Empty the array
-            gameMemory.gameStatus.gameBoard.splice(1, 1,"hello")
-
-
-            console.log(gameMemory.gameStatus.gameBoard);
-        }
-
-    
-        // gameMemory.gameStatus.aiBotTurns.push(1,2,3);
-        // gameMemory.playerDetails.playerName="Amal";
-        // console.log(gameMemory.playerDetails.playerName);
-        // console.log(gameMemory.gameStatus.aiBotTurns);
+    //         // gameMemory.playerDetails.playerName=prompt();
+    //         gameMemory.gameStatus.roundNo=+1;
+    //         console.log(gameMemory.playerDetails.playerName);
+    //         gameMemory.gameStatus.gameBoard=[]; // Empty the array
+    //         gameMemory.gameStatus.gameBoard.splice(1, 1,"hello")
 
 
-        return {gameStart}
-    }
+    //         console.log(gameMemory.gameStatus.gameBoard);
+    //     }
+
+    //     return {gameStart}
+    // }
 
     function randomChoice()
     {
@@ -56,15 +52,17 @@ const gameLogic =function ()
 
     function nextTurn()
     {
-        if (gameMemory.gameStatus.lastTurn===gameMemory[playerDetails][playerName])
+        if (gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName)
         {
-            const test2=gameMemory[playerDetails][playerName];
-           console.log(test2);
+            // return gameMemory.playerDetails.playerName;
+            let playerTurn="PlayerTurn"
+            return playerTurn;
         }
 
         else if (gameMemory.gameStatus.lastTurn==="AiBot")
         {
             console.log("Last Turn by AiBot");
+            return "AiBot"
 
         }
 
@@ -72,6 +70,8 @@ const gameLogic =function ()
         {
             return console.log("Invalid")
         }
+
+        return {playerTurn}
     
 
     } 
@@ -84,14 +84,21 @@ const gameLogic =function ()
         return {numberIs}
     }
 
-    return{gameStart,randomChoice,aiBot, nextTurn} // This will return the Factory functions
-
+    function playerTurn(playerChoice)
+    {
+        console.log("It's my life");
+        gameMemory.gameStatus.gameBoard.push(playerChoice);
+        return;
+    }
 
     // displayController;
+
+    return{randomChoice,aiBot, nextTurn,playerTurn} // This will return the Factory functions
 
 
 }
 
+// *.*.*.*.*.*.*.*.*.*. Game Memory *.*.*.*.*.*.*.*.*.*.
 
 const gameMemory= (function ()
 {
@@ -120,20 +127,33 @@ const gameMemory= (function ()
 })();
 
 
+// *.*.*.*.*.*.*.*.*.*. Display Controller *.*.*.*.*.*.*.*.*.*.
 
-const displayController= (function  ()
+const displayController= (function (displayThis)
 {
-    return (console.log(gameMemory));
+    // return (console.log(gameMemory));
+    const consoleOut=console.log("Output From Display Controller: " + displayThis);
+    return {consoleOut};
 
 
-})();
+});
 
 
-const amal=gameLogic();
-amal.gameStart();
+const player1=gameLogic();
+// player1.gameStart();
 
-let consoleTest=gameMemory.gameStatus.lastTurn;
 gameMemory.gameStatus.lastTurn="Amal";
+gameMemory.playerDetails.playerName="Amal";
+console.log(gameMemory.playerDetails.playerName);
 
+// gameMemory.gameStatus.lastTurn='Amal2';
+// gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
 
-console.log(consoleTest);
+// console.log(gameMemory.gameStatus.lastTurn);
+displayController(gameMemory.gameStatus.lastTurn);
+
+player1.nextTurn;
+
+player1.playerTurn("Xdsds");
+
+console.log(gameMemory);
