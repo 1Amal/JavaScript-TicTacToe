@@ -8,9 +8,9 @@ Tic Tac Toe Game
 
 const gameLogic =function ()
 {
-    playGame();
+    
 
-    function playGame()
+    const playGame= function ()
     {
         // console.log('Welcome');
 
@@ -22,92 +22,44 @@ const gameLogic =function ()
             {
                 gameMemory.playerDetails.playerName=prompt("Please Enter Your Name");
                 gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
-                // gameMemory.gameStatus.turnNo+=1;
-                playGame();
-
+                gameMemory.gameStatus.gameBoard=[];
+  
             }
 
             else if (gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName)
             {
-                // return gameMemory.playerDetails.playerName;
-                // let playerTurn="PlayerTurn"
+
                 console.log(gameMemory.playerDetails.playerName +"'s Turn");
-                
+                let playerChoice=prompt("Please Enter Grid number between 0-9: ")
+                gameMemory.gameStatus.gameBoard[playerChoice]=gameMemory.gameStatus.gameBoard.push(gameMemory.playerDetails.playerName);
                 gameMemory.gameStatus.lastTurn="AiBot";
 
-                // gameMemory.gameStatus.turnNo+=1;
 
-                playGame();
-
-
-                // return playerTurn;
             }
 
             else if (gameMemory.gameStatus.lastTurn==="AiBot")
             {
                 console.log("Last Turn by AiBot");
+                gameMemory.gameStatus.gameBoard.push("AiBot");
                 gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
-
-                // gameMemory.gameStatus.turnNo+=1;
-                // return "AiBot"
-
-                playGame();
 
             }
     }
+        // playGame();
 
-
-
-        return {playGame}
+        return {playGame,};
     
 
     } 
 
-
-    // function gameStart(start)
-    // {
-
-    //     if (gameMemory.gameStatus.roundNo>=1 && gameMemory.gameStatus.roundNo<9)
-    //         {
-    //             console.log("Welcome to next turn");
-    //             gameMemory.gameStatus.roundNo+=1;//Advance the round no by 1
-    //             console.log(gameMemory.gameStatus.roundNo);
-    //             gameMemory.gameStatus.gameBoard=[]; // Empty the array
-    //             console.log(gameMemory.gameStatus.gameBoard);
-
-
-    //         }
-        
-    //     else if(gameMemory.gameStatus.roundNo>=9)
-    //     {
-    //         console.log("Game Over")
-    //     }
-        
-    //     else{
-    //         console.log("Game has not been run Please input your Name ");
-
-    //         // gameMemory.playerDetails.playerName=prompt();
-    //         gameMemory.gameStatus.roundNo=+1;
-    //         console.log(gameMemory.playerDetails.playerName);
-    //         gameMemory.gameStatus.gameBoard=[]; // Empty the array
-    //         gameMemory.gameStatus.gameBoard.splice(1, 1,"hello")
-
-
-    //         console.log(gameMemory.gameStatus.gameBoard);
-    //     }
-
-    //     return {gameStart}
-    // }
-
     function randomChoice(randomLimit)
     {
         let randomNumber=Math.floor(Math.random()*randomLimit);
-        return {randomNumber}
+        return {randomLimit,randomNumber}
 
     }    
 
     
-
     function aiBot()
     {
         const random1=gameLogic;
@@ -123,9 +75,8 @@ const gameLogic =function ()
         return;
     }
 
-    // displayController;
 
-    return{randomChoice,aiBot,playerTurn} // This will return the Factory functions
+    return {randomChoice,aiBot,playerTurn,playGame} // This will return the Factory functions
 
 
 }
@@ -163,23 +114,12 @@ const gameMemory= (function ()
 
 const displayController= (function (displayThis)
 {
-    // return (console.log(gameMemory));
     const consoleOut=console.log("Output From Display Controller: " + displayThis);
     return {consoleOut};
 
 });
 
-gameLogic();
-// const player1=gameLogic();
-// const AiBot1=gameLogic();
-// player1.gameStart();
-
-// gameMemory.gameStatus.lastTurn="Amal";
-// gameMemory.playerDetails.playerName="Amal";
-
-
-// displayController(gameMemory.gameStatus.lastTurn);
+const playRound1=gameLogic();
+playRound1.playGame();
 
 console.log(gameMemory);
-
-// alert (player1.randomChoice(33));
