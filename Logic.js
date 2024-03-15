@@ -4,8 +4,48 @@ Tic Tac Toe Game
 
 // *.*.*.*.*.*.*.*.*.*. Game Logic *.*.*.*.*.*.*.*.*.*.
 
+
+
 const gameLogic =function ()
 {
+    playGame();
+
+    function playGame()
+    {
+        // console.log('Welcome');
+
+        if (gameMemory.gameStatus.lastTurn==="New")
+        {
+            console.log("Game First Run" + (gameMemory.playerDetails.playerName) + "What");
+            gameMemory.playerDetails.playerName=prompt("Please Enter Your Name");
+            gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
+            gameLogic();
+
+        }
+        else if (gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName)
+        {
+            // return gameMemory.playerDetails.playerName;
+            let playerTurn="PlayerTurn"
+            console.log(gameMemory.playerDetails.playerName +"'s Turn");
+            // return playerTurn;
+        }
+
+        else if (gameMemory.gameStatus.lastTurn==="AiBot")
+        {
+            console.log("Last Turn by AiBot");
+            // return "AiBot"
+
+        }
+
+        else
+        {
+            console.log("Invalid")
+        }
+
+        return {playGame}
+    
+
+    } 
 
 
     // function gameStart(start)
@@ -43,38 +83,14 @@ const gameLogic =function ()
     //     return {gameStart}
     // }
 
-    function randomChoice()
+    function randomChoice(randomLimit)
     {
-        let randomNumber=Math.floor(Math.random()*2);
+        let randomNumber=Math.floor(Math.random()*randomLimit);
         return {randomNumber}
 
     }    
 
-    function nextTurn()
-    {
-        if (gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName)
-        {
-            // return gameMemory.playerDetails.playerName;
-            let playerTurn="PlayerTurn"
-            return playerTurn;
-        }
-
-        else if (gameMemory.gameStatus.lastTurn==="AiBot")
-        {
-            console.log("Last Turn by AiBot");
-            return "AiBot"
-
-        }
-
-        else
-        {
-            return console.log("Invalid")
-        }
-
-        return {playerTurn}
     
-
-    } 
 
     function aiBot()
     {
@@ -86,14 +102,14 @@ const gameLogic =function ()
 
     function playerTurn(playerChoice)
     {
-        console.log("It's my life");
+        console.log(playerChoice);
         gameMemory.gameStatus.gameBoard.push(playerChoice);
         return;
     }
 
     // displayController;
 
-    return{randomChoice,aiBot, nextTurn,playerTurn} // This will return the Factory functions
+    return{randomChoice,aiBot,playerTurn} // This will return the Factory functions
 
 
 }
@@ -116,7 +132,7 @@ const gameMemory= (function ()
 
                         }
  
-    const gameStatus=    {lastTurn:"",
+    const gameStatus=    {lastTurn:"New",
                         playerTurns:[],
                         aiBotTurns:[],
                         roundNo:0,
@@ -135,25 +151,18 @@ const displayController= (function (displayThis)
     const consoleOut=console.log("Output From Display Controller: " + displayThis);
     return {consoleOut};
 
-
 });
-
-
-const player1=gameLogic();
+gameLogic();
+// const player1=gameLogic();
+// const AiBot1=gameLogic();
 // player1.gameStart();
 
-gameMemory.gameStatus.lastTurn="Amal";
-gameMemory.playerDetails.playerName="Amal";
-console.log(gameMemory.playerDetails.playerName);
+// gameMemory.gameStatus.lastTurn="Amal";
+// gameMemory.playerDetails.playerName="Amal";
 
-// gameMemory.gameStatus.lastTurn='Amal2';
-// gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
 
-// console.log(gameMemory.gameStatus.lastTurn);
-displayController(gameMemory.gameStatus.lastTurn);
-
-player1.nextTurn;
-
-player1.playerTurn("Xdsds");
+// displayController(gameMemory.gameStatus.lastTurn);
 
 console.log(gameMemory);
+
+// alert (player1.randomChoice(33));
