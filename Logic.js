@@ -12,10 +12,10 @@ const gameLogic =function ()
 
     const playGame= function ()
     {
-        // console.log('Welcome');
+        let playerChoice;
 
-        while (gameMemory.gameStatus.turnNo<=9){
-        gameMemory.gameStatus.turnNo++;
+        while (gameMemory.gameStatus.turnNo<9){
+        
 
         
             if (gameMemory.gameStatus.lastTurn==="New")
@@ -30,8 +30,21 @@ const gameLogic =function ()
             {
 
                 console.log(gameMemory.playerDetails.playerName +"'s Turn");
-                let playerChoice=prompt("Please Enter Grid number between 0-9: ")
-                gameMemory.gameStatus.gameBoard[playerChoice]=gameMemory.gameStatus.gameBoard.push(gameMemory.playerDetails.playerName);
+                playerChoice=prompt("Please Enter Grid number between 0-9: ")
+                
+                if (gameMemory.gameStatus.gameBoard[playerChoice]===undefined)
+                {
+                    console.log("Null Array position");
+                    gameMemory.gameStatus.gameBoard[playerChoice]=gameMemory.playerDetails.playerName;
+                    gameMemory.gameStatus.turnNo++;
+                }
+
+                else{
+                    console.log("Error Array not empty");
+                    playerChoice=prompt("Please Enter Grid number between 0-9: ");
+
+                }
+
                 gameMemory.gameStatus.lastTurn="AiBot";
 
 
@@ -39,13 +52,21 @@ const gameLogic =function ()
 
             else if (gameMemory.gameStatus.lastTurn==="AiBot")
             {
-                console.log("Last Turn by AiBot");
-                gameMemory.gameStatus.gameBoard.push("AiBot");
+                console.log("Turn by AiBot");
                 gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
+                gameMemory.gameStatus.turnNo++;
+
+                // const randomAi=gameLogic();
+                // console.log(randomAi.randomChoice(9));
+
+                gameMemory.gameStatus.gameBoard.push("AiBot");
+
+
+                
 
             }
     }
-        // playGame();
+
 
         return {playGame,};
     
