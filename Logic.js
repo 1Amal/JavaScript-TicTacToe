@@ -14,49 +14,47 @@ const gameLogic =function ()
     {
         // console.log('Welcome');
 
+        while (gameMemory.gameStatus.turnNo<=9){
+        gameMemory.gameStatus.turnNo++;
+
         
-        if (gameMemory.gameStatus.lastTurn==="New")
-        {
-            console.log("Game First Run" + (gameMemory.playerDetails.playerName));
-            gameMemory.playerDetails.playerName=prompt("Please Enter Your Name");
-            gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
-            gameMemory.gameStatus.turnNo+=1;
-            playGame();
+            if (gameMemory.gameStatus.lastTurn==="New")
+            {
+                gameMemory.playerDetails.playerName=prompt("Please Enter Your Name");
+                gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
+                // gameMemory.gameStatus.turnNo+=1;
+                playGame();
 
-        }
+            }
 
-        else if(gameMemory.gameStatus.turnNo>=9)
-        {
-           return console.log("Game Over");
-        }
-        
-        else if (gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName)
-        {
-            // return gameMemory.playerDetails.playerName;
-            // let playerTurn="PlayerTurn"
-            console.log(gameMemory.playerDetails.playerName +"'s Turn");
-            
-            gameMemory.gameStatus.lastTurn="AiBot";
+            else if (gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName)
+            {
+                // return gameMemory.playerDetails.playerName;
+                // let playerTurn="PlayerTurn"
+                console.log(gameMemory.playerDetails.playerName +"'s Turn");
+                
+                gameMemory.gameStatus.lastTurn="AiBot";
 
-            gameMemory.gameStatus.turnNo+=1;
+                // gameMemory.gameStatus.turnNo+=1;
 
-            playGame();
+                playGame();
 
 
-            // return playerTurn;
-        }
+                // return playerTurn;
+            }
 
-        else if (gameMemory.gameStatus.lastTurn==="AiBot")
-        {
-            console.log("Last Turn by AiBot");
-            gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
+            else if (gameMemory.gameStatus.lastTurn==="AiBot")
+            {
+                console.log("Last Turn by AiBot");
+                gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
 
-            gameMemory.gameStatus.turnNo+=1;
-            // return "AiBot"
+                // gameMemory.gameStatus.turnNo+=1;
+                // return "AiBot"
 
-            playGame();
+                playGame();
 
-        }
+            }
+    }
 
 
 
@@ -170,6 +168,7 @@ const displayController= (function (displayThis)
     return {consoleOut};
 
 });
+
 gameLogic();
 // const player1=gameLogic();
 // const AiBot1=gameLogic();
