@@ -73,20 +73,20 @@ const gameLogic =function ()
 
     } 
 
-    function randomChoice(randomLimit)
+    function randomChoice(minVal, maxVal)
     {
-        let randomNumber=Math.floor(Math.random()*randomLimit);
-        return {randomLimit,randomNumber}
+        var randomNumber=Math.round(minVal+(Math.random()*(maxVal-minVal)));
+        return {randomNumber}
 
     }    
 
     
     function aiBot()
     {
-        const random1=gameLogic;
-        const numberIs=random1.randomChoice;
-        gameMemory.gameStatus.gameBoard[0];
-        return {numberIs}
+        const nextChoice=randomChoice(0,9);
+        console.log(nextChoice);
+   
+        return {aiBot}
     }
 
     function playerTurn(playerChoice)
@@ -141,6 +141,6 @@ const displayController= (function (displayThis)
 });
 
 const playRound1=gameLogic();
-playRound1.playGame();
+// playRound1.playGame();
 
 console.log(gameMemory);
