@@ -62,8 +62,6 @@ const gameLogic =function ()
                 gameMemory.gameStatus.gameBoard.push("AiBot");
 
 
-                
-
             }
     }
 
@@ -80,36 +78,45 @@ const gameLogic =function ()
 
     }    
 
+    function checkGameBoard(indexNo)
+    {
+       let currentGameMemory= gameMemory.gameStatus.gameBoard;
+       let indexNoStatus=(gameMemory.gameStatus.gameBoard[indexNo]==="null");
+       console.log("Is gameBoard Index empty? " + indexNoStatus);
+
+        return {checkGameBoard, currentGameMemory,indexNo,indexNoStatus}
+    }
     
     function aiBot()
     {
-        let nextChoice=randomChoice(0,9);
-        console.log(nextChoice.randomNumber);
-        console.log(gameMemory.gameStatus.gameBoard);
-        // gameMemory.gameStatus.gameBoard=[1,2,3,4,5,6,7,8,9];
-
-        
-
-        
-        if(gameMemory.gameStatus.gameBoard[nextChoice.randomNumber]===undefined)
+        let nextChoice=randomChoice(0,9).randomNumber;
+        console.log("NextChoice Variable :" + nextChoice);
+             
+        if(gameMemory.gameStatus.gameBoard[nextChoice]==="null")
         {
-            console.log("Ok To store");
-            gameMemory.gameStatus.gameBoard[nextChoice.randomNumber]=nextChoice.randomNumber;
+         
 
+            console.log("Ok To store");
+            gameMemory.gameStatus.gameBoard[nextChoice]="aiBot";
+            console.log(gameMemory.gameStatus.gameBoard);
+            return;
 
         }
 
+        else if (gameMemory.gameStatus.gameBoard[nextChoice]===gameMemory.playerDetails.playerName ||
+            gameMemory.gameStatus.gameBoard[nextChoice]==="aiBot")
+        {
+            aiBot();
+        }
+        
         else
         {
-            console.log("Not ok to store");
-            // playRound.aiBot();
-            // return;
-    
             
+            console.log("Not ok to store");
+           
         }
 
   
-        
 
         return {aiBot}
     }
@@ -123,7 +130,7 @@ const gameLogic =function ()
     }
 
 
-    return {randomChoice,aiBot,playerTurn,playGame} // This will return the Factory functions
+    return {randomChoice,aiBot,playerTurn,playGame,checkGameBoard} // This will return the Factory functions
 
 
 }
@@ -150,7 +157,7 @@ const gameMemory= (function ()
                         turnNo:0,
                         playerTurns:[],
                         aiBotTurns:[],
-                        gameBoard:[],
+                        gameBoard:["null","null","null","null","null","null","null","null","null"],
                         }
 
     return {playerDetails,aiBotDetails, gameStatus}
