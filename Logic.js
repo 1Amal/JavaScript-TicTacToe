@@ -76,16 +76,41 @@ const gameLogic =function ()
     function randomChoice(minVal, maxVal)
     {
         var randomNumber=Math.round(minVal+(Math.random()*(maxVal-minVal)));
-        return {randomNumber}
+        return {randomChoice, randomNumber}
 
     }    
 
     
     function aiBot()
     {
-        const nextChoice=randomChoice(0,9);
-        console.log(nextChoice);
-   
+        let nextChoice=randomChoice(0,9);
+        console.log(nextChoice.randomNumber);
+        console.log(gameMemory.gameStatus.gameBoard);
+        // gameMemory.gameStatus.gameBoard=[1,2,3,4,5,6,7,8,9];
+
+        
+
+        
+        if(gameMemory.gameStatus.gameBoard[nextChoice.randomNumber]===undefined)
+        {
+            console.log("Ok To store");
+            gameMemory.gameStatus.gameBoard[nextChoice.randomNumber]=nextChoice.randomNumber;
+
+
+        }
+
+        else
+        {
+            console.log("Not ok to store");
+            // playRound.aiBot();
+            // return;
+    
+            
+        }
+
+  
+        
+
         return {aiBot}
     }
 
@@ -93,6 +118,7 @@ const gameLogic =function ()
     {
         console.log(playerChoice);
         gameMemory.gameStatus.gameBoard.push(playerChoice);
+
         return;
     }
 
@@ -140,7 +166,7 @@ const displayController= (function (displayThis)
 
 });
 
-const playRound1=gameLogic();
+const playRound=gameLogic();
 // playRound1.playGame();
 
 console.log(gameMemory);
