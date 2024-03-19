@@ -26,13 +26,13 @@ const gameLogic =function ()
   
             }
 
-            else if (gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName)
+            else if (gameMemory.gameStatus.lastTurn==="aiBot")
             {
 
                 console.log(gameMemory.playerDetails.playerName +"'s Turn");
                 playerChoice=prompt("Please Enter Grid number between 0-9: ")
                 
-                if (gameMemory.gameStatus.gameBoard[playerChoice]===undefined)
+                if (gameMemory.gameStatus.gameBoard[playerChoice]==="null")
                 {
                     console.log("Null Array position");
                     gameMemory.gameStatus.gameBoard[playerChoice]=gameMemory.playerDetails.playerName;
@@ -45,21 +45,22 @@ const gameLogic =function ()
 
                 }
 
-                gameMemory.gameStatus.lastTurn="AiBot";
+                gameMemory.gameStatus.lastTurn="aiBot";
 
 
             }
 
-            else if (gameMemory.gameStatus.lastTurn==="AiBot")
+            else if (gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName)
             {
-                console.log("Turn by AiBot");
-                gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
+                console.log("Last Turn by Player");
+                gameMemory.gameStatus.lastTurn="aiBot";
                 gameMemory.gameStatus.turnNo++;
 
                 // const randomAi=gameLogic();
                 // console.log(randomAi.randomChoice(9));
 
-                gameMemory.gameStatus.gameBoard.push("AiBot");
+                // gameMemory.gameStatus.gameBoard.push("aiBot");
+                playRound.aiBot();
 
 
             }
@@ -146,9 +147,9 @@ const gameMemory= (function ()
         
                         }
 
-    //Variables for AiBot
+    //Variables for aiBot
     const aiBotDetails={
-                        aiBotName:"AiBot",
+                        aiBotName:"aiBot",
                         aiBotWins:0,
 
                         }
@@ -174,6 +175,6 @@ const displayController= (function (displayThis)
 });
 
 const playRound=gameLogic();
-// playRound1.playGame();
+// playRound.playGame();
 
 console.log(gameMemory);
