@@ -11,7 +11,6 @@ const gameLogic =function ()
     
     const playGame= function ()
     {
-        let playerChoice;
 
         while (gameMemory.gameStatus.turnNo<9){
         
@@ -27,31 +26,7 @@ const gameLogic =function ()
 
             else if (gameMemory.gameStatus.lastTurn==="aiBot")
             {
-
-                    console.log(gameMemory.playerDetails.playerName +"'s Turn");
-                    playerChoice=prompt("Please Enter Grid number between 0-9: ");
-                    console.log("Players Choice of Gameboard Index is: " + playerChoice);
-                    
-                    if (gameMemory.gameStatus.gameBoard[playerChoice]==="null")
-                    {
-                        console.log("Null Array position, so safe to store player choice");
-                        gameMemory.gameStatus.gameBoard[playerChoice]=gameMemory.playerDetails.playerName;
-                        gameMemory.gameStatus.turnNo+=1;
-                        // return;
-                    }
-
-                    else if (gameMemory.gameStatus.gameBoard[playerChoice]==="aiBot" || gameMemory.playerDetails.playerName)
-                    {
-                        console.log("Error Array not empty, so not safe to store player input, please try again");
-                        // playerChoice=prompt("Please Enter Grid number between 0-9: ");
-                        playGame();
-
-                    }
-
-                    gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
-                    gameMemory.gameStatus.turnNo+=1;
-
-
+                    player();
             }
 
             else if (gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName)
@@ -63,14 +38,14 @@ const gameLogic =function ()
 
             }
     }
-
-
         return {playGame};
     
 
     } 
 
-    function randomChoice(minVal, maxVal)
+
+//Function to generate a random Number
+function randomChoice(minVal, maxVal)
     {
         var randomNumber=Math.round(minVal+(Math.random()*(maxVal-minVal)));
         return {randomChoice, randomNumber}
@@ -85,7 +60,37 @@ const gameLogic =function ()
 
         return {checkGameBoard, currentGameMemory,indexNo,indexNoStatus}
     }
-    
+  
+// Logic for player to input choice
+    function player()
+    {
+        let playerChoice;
+
+        console.log(gameMemory.playerDetails.playerName +"'s Turn");
+        
+        playerChoice=prompt("Please Enter Grid number between 0-9: ");
+        console.log("Players Choice of Gameboard Index is: " + playerChoice);
+                    
+        if (gameMemory.gameStatus.gameBoard[playerChoice]==="null")
+            {
+                console.log("Null Array position, so safe to store player choice");
+                gameMemory.gameStatus.gameBoard[playerChoice]=gameMemory.playerDetails.playerName;
+                gameMemory.gameStatus.turnNo+=1;
+                return;
+                // playRound.playGame();
+            }
+
+        else if (gameMemory.gameStatus.gameBoard[playerChoice]==="aiBot" || gameMemory.playerDetails.playerName)
+            {
+                console.log("Error Array not empty, so not safe to store player input, please try again");
+                // playerChoice=prompt("Please Enter Grid number between 0-9: ");
+                player();
+
+            }
+
+    }
+
+//Logic for aiBot
     function aiBot()
     {
         let nextChoice=randomChoice(0,9).randomNumber;
@@ -128,7 +133,7 @@ const gameLogic =function ()
     }
 
 
-    return {randomChoice,aiBot,playerTurn,playGame,checkGameBoard} // This will return the Factory functions
+    return {randomChoice,aiBot,playerTurn,playGame,checkGameBoard,player} // This will return the Factory functions
 
 
 }
