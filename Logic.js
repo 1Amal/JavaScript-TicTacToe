@@ -19,7 +19,7 @@ const gameLogic =function ()
             {
                 gameMemory.playerDetails.playerName=prompt("Please Enter Your Name");
                 gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
-                gameMemory.gameStatus.gameBoard=[];
+                gameMemory.gameStatus.gameBoard=["null","null","null","null","null","null","null","null","null"];
                 gameMemory.gameStatus.turnNo=0;
                 gameMemory.gameStatus.lastTurn="aiBot";
   
@@ -29,20 +29,24 @@ const gameLogic =function ()
             {
 
                     console.log(gameMemory.playerDetails.playerName +"'s Turn");
-                    // playerChoice=prompt("Please Enter Grid number between 0-9: ")
+                    playerChoice=prompt("Please Enter Grid number between 0-9: ");
+                    console.log("Players Choice of Gameboard Index is: " + playerChoice);
                     
-                    // if (gameMemory.gameStatus.gameBoard[playerChoice]==="null")
-                    // {
-                    //     console.log("Null Array position, so safe to store player choice");
-                    //     gameMemory.gameStatus.gameBoard[playerChoice]=gameMemory.playerDetails.playerName;
-                    //     gameMemory.gameStatus.turnNo+=1;
-                    // }
+                    if (gameMemory.gameStatus.gameBoard[playerChoice]==="null")
+                    {
+                        console.log("Null Array position, so safe to store player choice");
+                        gameMemory.gameStatus.gameBoard[playerChoice]=gameMemory.playerDetails.playerName;
+                        gameMemory.gameStatus.turnNo+=1;
+                        // return;
+                    }
 
-                    // else{
-                    //     console.log("Error Array not empty, so not safe to store player input");
-                    //     // playerChoice=prompt("Please Enter Grid number between 0-9: ");
+                    else if (gameMemory.gameStatus.gameBoard[playerChoice]==="aiBot" || gameMemory.playerDetails.playerName)
+                    {
+                        console.log("Error Array not empty, so not safe to store player input, please try again");
+                        // playerChoice=prompt("Please Enter Grid number between 0-9: ");
+                        playGame();
 
-                    // }
+                    }
 
                     gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
                     gameMemory.gameStatus.turnNo+=1;
@@ -55,12 +59,7 @@ const gameLogic =function ()
                 console.log("aiBot's Turn");
                 gameMemory.gameStatus.lastTurn="aiBot";
                 gameMemory.gameStatus.turnNo+=1;
-
-                // const randomAi=gameLogic();
-                // console.log(randomAi.randomChoice(9));
-
-                // gameMemory.gameStatus.gameBoard.push("aiBot");
-                // playRound.aiBot();
+                playRound.aiBot();
 
             }
     }
@@ -156,7 +155,7 @@ const gameMemory= (function ()
                         turnNo:0,
                         playerTurns:[],
                         aiBotTurns:[],
-                        gameBoard:["null","null","null","null","null","null","null","null","null"],
+                        gameBoard:[],
                         }
 
     return {playerDetails,aiBotDetails, gameStatus}
