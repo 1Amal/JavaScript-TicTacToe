@@ -26,7 +26,9 @@ const gameLogic =function ()
 
             else if (gameMemory.gameStatus.lastTurn==="aiBot")
             {
-                    player();
+                gameMemory.gameStatus.turnNo+=1;    
+                playRound.player();
+                    
             }
 
             else if (gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName)
@@ -76,6 +78,7 @@ function randomChoice(minVal, maxVal)
                 console.log("Null Array position, so safe to store player choice");
                 gameMemory.gameStatus.gameBoard[playerChoice]=gameMemory.playerDetails.playerName;
                 gameMemory.gameStatus.turnNo+=1;
+                gameMemory.gameStatus.lastTurn="aiBot";
                 return;
                 // playRound.playGame();
             }
@@ -87,6 +90,8 @@ function randomChoice(minVal, maxVal)
                 player();
 
             }
+
+            playRound.playGame(); // Return to original function
 
     }
 
@@ -120,7 +125,7 @@ function randomChoice(minVal, maxVal)
         }
 
   
-
+        // playRound.playGame();
         return {aiBot}
     }
 
