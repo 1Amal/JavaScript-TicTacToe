@@ -11,27 +11,30 @@ const gameLogic =function ()
     
     const playGame= function ()
     {
-
+//This While loop will run for nine times
         while (gameMemory.gameStatus.turnNo<=9){
         
             if (gameMemory.gameStatus.lastTurn==="New")
             {
-                gameMemory.playerDetails.playerName=prompt("Please Enter Your Name");
-                gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
                 gameMemory.gameStatus.gameBoard=["null","null","null","null","null","null","null","null","null"];
                 gameMemory.gameStatus.turnNo=0;
                 gameMemory.gameStatus.lastTurn="aiBot";
+
+                // gameMemory.playerDetails.playerName=prompt("Please Enter Your Name");
+                displayController("New");
+  
+
   
             }
-
-            else if (gameMemory.gameStatus.lastTurn==="aiBot")
+// This will run the function to get Players input
+            else if (gameMemory.gameStatus.lastTurn==="aiBot") 
             {
                 gameMemory.gameStatus.turnNo+=1;
                 console.log(gameMemory.gameStatus.turnNo);    
                 playRound.player();
                     
             }
-
+//This will run the function to generate aiBot response
             else if (gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName)
             {
                 console.log("aiBot's Turn");
@@ -48,7 +51,7 @@ const gameLogic =function ()
     } 
 
 
-//Function to generate a random Number
+//Function to generate a random Number that is used in making random choices by aiBot
 function randomChoice(minVal, maxVal)
     {
         var randomNumber=Math.round(minVal+(Math.random()*(maxVal-minVal)));
@@ -56,7 +59,7 @@ function randomChoice(minVal, maxVal)
 
     }    
 
-    function checkGameBoard(indexNo)
+function checkGameBoard(indexNo)
     {
        let currentGameMemory= gameMemory.gameStatus.gameBoard;
        let indexNoStatus=(gameMemory.gameStatus.gameBoard[indexNo]==="null");
@@ -178,8 +181,25 @@ const gameMemory= (function ()
 
 const displayController= (function (displayThis)
 {
-    const consoleOut=console.log("Output From Display Controller: " + displayThis);
-    return {consoleOut};
+    let consoleOut;
+   
+    switch (displayThis)
+    {
+        case "New":
+            consoleOut=console.log("Output From Display Controller: " + displayThis);
+            gameMemory.playerDetails.playerName=prompt("Please Enter Your Name");
+
+            break;
+        
+        case 1:
+            
+            consoleOut=console.log("Output From Display Controller: " + displayThis);
+
+            break;
+    }
+    
+            // return {consoleOut};
+
 
 });
 
