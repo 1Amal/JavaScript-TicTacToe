@@ -9,65 +9,64 @@ Tic Tac Toe Game
 const gameLogic =function ()
 {
     
-
     const playGame= function ()
     {
         let playerChoice;
 
         while (gameMemory.gameStatus.turnNo<9){
         
-
-        
             if (gameMemory.gameStatus.lastTurn==="New")
             {
                 gameMemory.playerDetails.playerName=prompt("Please Enter Your Name");
                 gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
                 gameMemory.gameStatus.gameBoard=[];
+                gameMemory.gameStatus.turnNo=0;
+                gameMemory.gameStatus.lastTurn="aiBot";
   
             }
 
             else if (gameMemory.gameStatus.lastTurn==="aiBot")
             {
 
-                console.log(gameMemory.playerDetails.playerName +"'s Turn");
-                playerChoice=prompt("Please Enter Grid number between 0-9: ")
-                
-                if (gameMemory.gameStatus.gameBoard[playerChoice]==="null")
-                {
-                    console.log("Null Array position");
-                    gameMemory.gameStatus.gameBoard[playerChoice]=gameMemory.playerDetails.playerName;
-                    gameMemory.gameStatus.turnNo++;
-                }
+                    console.log(gameMemory.playerDetails.playerName +"'s Turn");
+                    // playerChoice=prompt("Please Enter Grid number between 0-9: ")
+                    
+                    // if (gameMemory.gameStatus.gameBoard[playerChoice]==="null")
+                    // {
+                    //     console.log("Null Array position, so safe to store player choice");
+                    //     gameMemory.gameStatus.gameBoard[playerChoice]=gameMemory.playerDetails.playerName;
+                    //     gameMemory.gameStatus.turnNo+=1;
+                    // }
 
-                else{
-                    console.log("Error Array not empty");
-                    playerChoice=prompt("Please Enter Grid number between 0-9: ");
+                    // else{
+                    //     console.log("Error Array not empty, so not safe to store player input");
+                    //     // playerChoice=prompt("Please Enter Grid number between 0-9: ");
 
-                }
+                    // }
 
-                gameMemory.gameStatus.lastTurn="aiBot";
+                    gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
+                    gameMemory.gameStatus.turnNo+=1;
 
 
             }
 
             else if (gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName)
             {
-                console.log("Last Turn by Player");
+                console.log("aiBot's Turn");
                 gameMemory.gameStatus.lastTurn="aiBot";
-                gameMemory.gameStatus.turnNo++;
+                gameMemory.gameStatus.turnNo+=1;
 
                 // const randomAi=gameLogic();
                 // console.log(randomAi.randomChoice(9));
 
                 // gameMemory.gameStatus.gameBoard.push("aiBot");
-                playRound.aiBot();
-
+                // playRound.aiBot();
 
             }
     }
 
 
-        return {playGame,};
+        return {playGame};
     
 
     } 
@@ -96,7 +95,6 @@ const gameLogic =function ()
         if(gameMemory.gameStatus.gameBoard[nextChoice]==="null")
         {
          
-
             console.log("Ok To store");
             gameMemory.gameStatus.gameBoard[nextChoice]="aiBot";
             console.log(gameMemory.gameStatus.gameBoard);
