@@ -12,7 +12,7 @@ const gameLogic =function ()
     const playGame= function ()
     {
 
-        while (gameMemory.gameStatus.turnNo<9){
+        while (gameMemory.gameStatus.turnNo<=9){
         
             if (gameMemory.gameStatus.lastTurn==="New")
             {
@@ -26,7 +26,8 @@ const gameLogic =function ()
 
             else if (gameMemory.gameStatus.lastTurn==="aiBot")
             {
-                gameMemory.gameStatus.turnNo+=1;    
+                gameMemory.gameStatus.turnNo+=1;
+                console.log(gameMemory.gameStatus.turnNo);    
                 playRound.player();
                     
             }
@@ -36,6 +37,7 @@ const gameLogic =function ()
                 console.log("aiBot's Turn");
                 gameMemory.gameStatus.lastTurn="aiBot";
                 gameMemory.gameStatus.turnNo+=1;
+                console.log(gameMemory.gameStatus.turnNo);  
                 playRound.aiBot();
 
             }
@@ -77,8 +79,8 @@ function randomChoice(minVal, maxVal)
             {
                 console.log("Null Array position, so safe to store player choice");
                 gameMemory.gameStatus.gameBoard[playerChoice]=gameMemory.playerDetails.playerName;
-                gameMemory.gameStatus.turnNo+=1;
-                gameMemory.gameStatus.lastTurn="aiBot";
+                // gameMemory.gameStatus.turnNo+=1;
+                gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
                 return;
                 // playRound.playGame();
             }
