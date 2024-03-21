@@ -8,6 +8,15 @@ h1
     display: grid;
 }
 
+.gameBoardContainer
+{
+    display: grid;
+    border: 2px #252b26f9 solid;
+    width:9rem;
+    height:10rem;
+    margin-left:150px;
+}
+
 .boardInfo, td, tr
 {
 border:5px solid black;
@@ -15,3 +24,13 @@ padding:2rem;
 border-collapse: collapse;
 }
 
+button
+{
+    padding:1rem;
+    font-size: 1rem;
+}
+
+#grid-0
+{
+
+}
