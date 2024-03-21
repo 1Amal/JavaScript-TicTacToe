@@ -2,9 +2,7 @@
 Tic Tac Toe Game
 */
 
-// *.*.*.*.*.*.*.*.*.*. Game Logic *.*.*.*.*.*.*.*.*.*.
-
-
+// *.*.*.*.*.*.*.*.*.*. Game Control Logic *.*.*.*.*.*.*.*.*.*.
 
 const gameLogic =function ()
 {
@@ -21,13 +19,14 @@ const gameLogic =function ()
                 gameMemory.gameStatus.lastTurn="aiBot";
                 displayController("New");
   
-
-  
             }
 
             else if (gameMemory.gameStatus.lastTurn==="gameOver")
             {
-                gameMemory.gameStatus.turnNo=11;
+                // gameMemory.gameStatus.turnNo=11;
+                // gameMemory.gameStatus.lastTurn==="New";
+                return;
+
             }
 // This will run the function to get Players input
             else if (gameMemory.gameStatus.lastTurn==="aiBot") 
@@ -84,12 +83,10 @@ function randomChoice(minVal, maxVal)
             {
                 console.log("Null Array position, so safe to store player choice");
                 gameMemory.gameStatus.gameBoard[playerChoice]=gameMemory.playerDetails.playerName;
-                // gameMemory.gameStatus.turnNo+=1;
                 gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
          
 
                 return;
-                // playRound.playGame();
             }
 
         else if (gameMemory.gameStatus.gameBoard[playerChoice]==="aiBot" || gameMemory.playerDetails.playerName)
@@ -100,7 +97,7 @@ function randomChoice(minVal, maxVal)
 
             }
 
-            playRound.playGame(); // Return to original function
+            playGame(); // Return to original function
 
     }
 
@@ -178,19 +175,12 @@ const checkForWinner=function()
 // Conditions for Tie/Draw, Anything that is not in the above win conditions will be a draw/Tie after all 9 grid slots have been filled
 
 
-//Function to compare two arrays and if both arrays are equal will give out true and if they are different will give out false. Using this you can compare above win conditions against two fixed arrays of const aiBotWin=["aiBot","aiBot","aiBot"] which will give aiBot win condition and const playerWin=[gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName]; which will give player win condition. 
+// Function to compare two arrays and if both arrays are equal will give out true and if they are different will give out false. Using this you can compare above win conditions against two fixed arrays of const aiBotWin=["aiBot","aiBot","aiBot"] which will give aiBot win condition and const playerWin=[gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName]; which will give player win condition. 
 
 const compareArrays = (a, b) =>
 a.length === b.length &&
 a.every((element, index) => element === b[index]);
-        
-        // console.log(winningCondition1);
-
-        // for (let i=0; i<finalGameBoard.length; i++)
-        // {
-        //     console.log(finalGameBoard[i]);
-        // }
-
+   
 //This will save the wining condition status to a variable which can be used for comparison
         let playerWonCondition1= compareArrays(playerWin, winningCondition1); 
         let playerWonCondition2= compareArrays(playerWin, winningCondition2); 
@@ -227,6 +217,8 @@ a.every((element, index) => element === b[index]);
 
 
                 displayController("playerWon");
+                endGame();
+
 
                 return;
             }
@@ -247,46 +239,23 @@ a.every((element, index) => element === b[index]);
                         " 2,4,6: "+ aiBotWonCondition8);
 
             displayController("aiBotWon");
+            endGame();
 
             return;
         }
 
-        else 
-        {
-            displayController("draw");
-        }
-
-
     }
 
+//Function to end the game
 const endGame=function()
 {
     displayController("gameOver");
-    gameMemory.gameStatus.lastTurn==="gameOver"
+    gameMemory.gameStatus.lastTurn==="gameOver";
+    return;
 
 }
 
-    // function playerTurn(playerChoice)
-    // {
-    //     console.log(playerChoice);
-    //     gameMemory.gameStatus.gameBoard.push(playerChoice);
-
-    //     return;
-    // }
-
-    // function checkGameBoard(indexNo)
-    // {
-    //    let currentGameMemory= gameMemory.gameStatus.gameBoard;
-    //    let indexNoStatus=(gameMemory.gameStatus.gameBoard[indexNo]==="null");
-    //    console.log("Is gameBoard Index empty? " + indexNoStatus);
-
-    //     return {checkGameBoard, currentGameMemory,indexNo,indexNoStatus}
-    // }
-
-    
-
-
-    return {randomChoice,aiBot,playGame,player,checkForWinner,endGame} // This will return the Factory functions
+   return {randomChoice,aiBot,playGame,player,checkForWinner,endGame} // This will return the Factory functions
 
 
 }
@@ -295,20 +264,21 @@ const endGame=function()
 
 const gameMemory= (function ()
 {
-    //Variable for Player
+//Variables for Player
     const playerDetails={playerName:"",
                          playerMarker:"X",
                          playerWins:0,
         
                         }
 
-    //Variables for aiBot
+//Variables for aiBot
     const aiBotDetails={
                         aiBotName:"aiBot",
                         aiBotWins:0,
 
                         }
- 
+
+//Variables for gameStatus
     const gameStatus=  {lastTurn:"New",
                         turnNo:0,
                         playerTurns:[],
@@ -359,12 +329,8 @@ const displayController= (function (displayThis)
 
     }
     
-            // return {consoleOut};
-
 
 });
-
-
 
 const playRound=gameLogic();
 // playRound.playGame();
