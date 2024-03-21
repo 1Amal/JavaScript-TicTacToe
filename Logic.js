@@ -10,45 +10,38 @@ const gameLogic =function ()
 
 const newGame=function()
 
-{
-    gameMemory.gameStatus.gameBoard=["null","null","null","null","null","null","null","null","null"];
-    gameMemory.gameStatus.turnNo=0;
-    gameMemory.gameStatus.lastTurn="aiBot";
-    displayController("newGame");
-    playGame();
-    return{newGame};
+    {
+        gameMemory.gameStatus.gameBoard=["null","null","null","null","null","null","null","null","null"];
+        gameMemory.gameStatus.turnNo=0;
+        gameMemory.gameStatus.lastTurn="aiBot";
+        displayController("newGame");
+        playGame();
+        return{newGame};
 
-}
+    }
 
-const endGame=function()
-{
-    displayController("gameOver");
-    gameMemory.gameStatus.lastTurn==="gameOver";
-    return;
+    const gameOver=function()
+    {
+        displayController("gameOver");
+        // gameMemory.gameStatus.lastTurn==="gameOver";
+        gameMemory.gameStatus.turnNo=11;
+        gameMemory.gameStatus.lastTurn==="New";
+        return;
 
-}
+    }
     
     const playGame= function ()
     {
 //This While loop will run for nine times
         while (gameMemory.gameStatus.turnNo<=9){
-        
-            if (gameMemory.gameStatus.lastTurn==="gameOver")
-            {
-                // gameMemory.gameStatus.turnNo=11;
-                // gameMemory.gameStatus.lastTurn==="New";
-                return;
 
-            }
 // This will run the function to get Players input
-            else if (gameMemory.gameStatus.lastTurn==="aiBot") 
+            if (gameMemory.gameStatus.lastTurn==="aiBot") 
             {
                 gameMemory.gameStatus.turnNo+=1;
                 console.log(gameMemory.gameStatus.turnNo);    
-                // playRound.player();
                 player();
                 checkForWinner();
-
                     
             }
 //This will run the function to generate aiBot response
@@ -58,26 +51,23 @@ const endGame=function()
                 gameMemory.gameStatus.lastTurn="aiBot";
                 gameMemory.gameStatus.turnNo+=1;
                 console.log(gameMemory.gameStatus.turnNo);  
-                // playRound.aiBot();
                 aiBot();
                 checkForWinner();
-
 
             }
     }
         return {playGame};
     
-
     } 
 
 
 //Function to generate a random Number that is used in making random choices by aiBot
-function randomChoice(minVal, maxVal)
-    {
-        var randomNumber=Math.round(minVal+(Math.random()*(maxVal-minVal)));
-        return {randomChoice, randomNumber}
+    function randomChoice(minVal, maxVal)
+        {
+            var randomNumber=Math.round(minVal+(Math.random()*(maxVal-minVal)));
+            return {randomChoice, randomNumber}
 
-    }    
+        }    
 
 
   
@@ -145,9 +135,9 @@ function randomChoice(minVal, maxVal)
     }
 
 // Function to check for winning conditions
-const checkForWinner=function()
-    {
-        const finalGameBoard= displayController("gameBoard"); 
+    const checkForWinner=function()
+        {
+            const finalGameBoard= displayController("gameBoard"); 
 
         // gameMemory.gameStatus.gameBoard=["aiBot","aiBot","aiBot","aiBot","aiBot","aiBot","aiBot","aiBot","aiBot"]; //This is for testing only
         
@@ -188,9 +178,9 @@ const checkForWinner=function()
 
 // Function to compare two arrays and if both arrays are equal will give out true and if they are different will give out false. Using this you can compare above win conditions against two fixed arrays of const aiBotWin=["aiBot","aiBot","aiBot"] which will give aiBot win condition and const playerWin=[gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName]; which will give player win condition. 
 
-const compareArrays = (a, b) =>
-a.length === b.length &&
-a.every((element, index) => element === b[index]);
+        const compareArrays = (a, b) =>
+        a.length === b.length &&
+        a.every((element, index) => element === b[index]);
    
 //This will save the wining condition status to a variable which can be used for comparison
         let playerWonCondition1= compareArrays(playerWin, winningCondition1); 
@@ -228,7 +218,7 @@ a.every((element, index) => element === b[index]);
 
 
                 displayController("playerWon");
-                endGame();
+                gameOver();
 
 
                 return;
@@ -250,16 +240,20 @@ a.every((element, index) => element === b[index]);
                         " 2,4,6: "+ aiBotWonCondition8);
 
             displayController("aiBotWon");
-            endGame();
+            gameOver();
 
             return;
         }
 
+        else if (gameMemory.gameStatus.turnNo>=9)
+        {
+            console.log("Game end in a Draw");
+            gameOver();
+        }
+
     }
 
-
-
-   return {newGame,randomChoice,aiBot,playGame,player,checkForWinner,endGame} // This will return the Factory functions
+return {newGame,gameOver,randomChoice,aiBot,playGame,player,checkForWinner} // This will return the Factory functions
 
 
 }
