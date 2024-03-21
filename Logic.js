@@ -6,22 +6,34 @@ Tic Tac Toe Game
 
 const gameLogic =function ()
 {
+//Function to end the game
+
+const newGame=function()
+
+{
+    gameMemory.gameStatus.gameBoard=["null","null","null","null","null","null","null","null","null"];
+    gameMemory.gameStatus.turnNo=0;
+    gameMemory.gameStatus.lastTurn="aiBot";
+    displayController("newGame");
+    playGame();
+    return{newGame};
+
+}
+
+const endGame=function()
+{
+    displayController("gameOver");
+    gameMemory.gameStatus.lastTurn==="gameOver";
+    return;
+
+}
     
     const playGame= function ()
     {
 //This While loop will run for nine times
         while (gameMemory.gameStatus.turnNo<=9){
         
-            if (gameMemory.gameStatus.lastTurn==="New")
-            {
-                gameMemory.gameStatus.gameBoard=["null","null","null","null","null","null","null","null","null"];
-                gameMemory.gameStatus.turnNo=0;
-                gameMemory.gameStatus.lastTurn="aiBot";
-                displayController("New");
-  
-            }
-
-            else if (gameMemory.gameStatus.lastTurn==="gameOver")
+            if (gameMemory.gameStatus.lastTurn==="gameOver")
             {
                 // gameMemory.gameStatus.turnNo=11;
                 // gameMemory.gameStatus.lastTurn==="New";
@@ -85,7 +97,6 @@ function randomChoice(minVal, maxVal)
                 gameMemory.gameStatus.gameBoard[playerChoice]=gameMemory.playerDetails.playerName;
                 gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
          
-
                 return;
             }
 
@@ -246,16 +257,9 @@ a.every((element, index) => element === b[index]);
 
     }
 
-//Function to end the game
-const endGame=function()
-{
-    displayController("gameOver");
-    gameMemory.gameStatus.lastTurn==="gameOver";
-    return;
 
-}
 
-   return {randomChoice,aiBot,playGame,player,checkForWinner,endGame} // This will return the Factory functions
+   return {newGame,randomChoice,aiBot,playGame,player,checkForWinner,endGame} // This will return the Factory functions
 
 
 }
@@ -298,7 +302,7 @@ const displayController= (function (displayThis)
    
     switch (displayThis)
     {
-        case "New":
+        case "newGame":
             consoleOut=console.log("Output From Display Controller: " + displayThis);
             gameMemory.playerDetails.playerName=prompt("Please Enter Your Name");
 
@@ -332,7 +336,7 @@ const displayController= (function (displayThis)
 
 });
 
-const playRound=gameLogic();
+const newGameRound=gameLogic();
 // playRound.playGame();
 
 console.log(gameMemory);
