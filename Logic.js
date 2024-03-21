@@ -19,12 +19,15 @@ const gameLogic =function ()
                 gameMemory.gameStatus.gameBoard=["null","null","null","null","null","null","null","null","null"];
                 gameMemory.gameStatus.turnNo=0;
                 gameMemory.gameStatus.lastTurn="aiBot";
-
-                // gameMemory.playerDetails.playerName=prompt("Please Enter Your Name");
                 displayController("New");
   
 
   
+            }
+
+            else if (gameMemory.gameStatus.lastTurn==="gameOver")
+            {
+                gameMemory.gameStatus.turnNo=11;
             }
 // This will run the function to get Players input
             else if (gameMemory.gameStatus.lastTurn==="aiBot") 
@@ -33,6 +36,8 @@ const gameLogic =function ()
                 console.log(gameMemory.gameStatus.turnNo);    
                 // playRound.player();
                 player();
+                checkForWinner();
+
                     
             }
 //This will run the function to generate aiBot response
@@ -44,6 +49,8 @@ const gameLogic =function ()
                 console.log(gameMemory.gameStatus.turnNo);  
                 // playRound.aiBot();
                 aiBot();
+                checkForWinner();
+
 
             }
     }
@@ -79,6 +86,8 @@ function randomChoice(minVal, maxVal)
                 gameMemory.gameStatus.gameBoard[playerChoice]=gameMemory.playerDetails.playerName;
                 // gameMemory.gameStatus.turnNo+=1;
                 gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
+         
+
                 return;
                 // playRound.playGame();
             }
@@ -127,17 +136,17 @@ function randomChoice(minVal, maxVal)
        return {aiBot}
     }
 
-    const checkForWinner=function()
+// Function to check for winning conditions
+const checkForWinner=function()
     {
         const finalGameBoard= displayController("gameBoard"); 
 
-        gameMemory.gameStatus.gameBoard=["aiBot","aiBot","aiBot","Amal","Amal","Amal","aiBot","Amal","aiBot"]; //This is for testing only
+        // gameMemory.gameStatus.gameBoard=["aiBot","aiBot","aiBot","aiBot","aiBot","aiBot","aiBot","aiBot","aiBot"]; //This is for testing only
         
-        gameMemory.playerDetails.playerName="Amal"; //This is for testing only
+        // gameMemory.playerDetails.playerName="Amal"; //This is for testing only
 
 // Player win array for comparison
         const playerWin=[gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName]; 
-        console.log(playerWin);
 
 // aiBot win array for comparison
         const aiBotWin=["aiBot","aiBot","aiBot"]; 
@@ -175,40 +184,87 @@ const compareArrays = (a, b) =>
 a.length === b.length &&
 a.every((element, index) => element === b[index]);
         
-        console.log(winningCondition1);
+        // console.log(winningCondition1);
 
-        for (let i=0; i<finalGameBoard.length; i++)
+        // for (let i=0; i<finalGameBoard.length; i++)
+        // {
+        //     console.log(finalGameBoard[i]);
+        // }
+
+//This will save the wining condition status to a variable which can be used for comparison
+        let playerWonCondition1= compareArrays(playerWin, winningCondition1); 
+        let playerWonCondition2= compareArrays(playerWin, winningCondition2); 
+        let playerWonCondition3= compareArrays(playerWin, winningCondition3); 
+        let playerWonCondition4= compareArrays(playerWin, winningCondition4); 
+        let playerWonCondition5= compareArrays(playerWin, winningCondition5); 
+        let playerWonCondition6= compareArrays(playerWin, winningCondition6); 
+        let playerWonCondition7= compareArrays(playerWin, winningCondition7); 
+        let playerWonCondition8= compareArrays(playerWin, winningCondition8); 
+
+
+        let aiBotWonCondition1=compareArrays(aiBotWin,winningCondition1);
+        let aiBotWonCondition2=compareArrays(aiBotWin,winningCondition2); 
+        let aiBotWonCondition3=compareArrays(aiBotWin,winningCondition3); 
+        let aiBotWonCondition4=compareArrays(aiBotWin,winningCondition4); 
+        let aiBotWonCondition5=compareArrays(aiBotWin,winningCondition5); 
+        let aiBotWonCondition6=compareArrays(aiBotWin,winningCondition6); 
+        let aiBotWonCondition7=compareArrays(aiBotWin,winningCondition7); 
+        let aiBotWonCondition8=compareArrays(aiBotWin,winningCondition8); 
+
+//This will check if player has won        
+        if (playerWonCondition1===true || playerWonCondition2===true || playerWonCondition3===true || playerWonCondition4===true || playerWonCondition5===true || playerWonCondition6===true || playerWonCondition7===true || playerWonCondition8===true)
+            {
+                // console.log("Yayyyy Player won");
+
+                console.log("Player winning conditions "+ " 0,1,2:" + playerWonCondition1 + 
+                " 3,4,5: "+ playerWonCondition2 + 
+                " 6,7,8: "+ playerWonCondition3 + 
+                " 0,3,6: "+ playerWonCondition4 + 
+                " 1,4,7: "+ playerWonCondition5 + 
+                " 2,5,8: "+ playerWonCondition6 + 
+                " 0,4,8: "+ playerWonCondition7 + 
+                " 2,4,6: "+ playerWonCondition8);
+
+
+                displayController("playerWon");
+
+                return;
+            }
+
+//This will check if the aiBot has won
+
+        else if (aiBotWonCondition1===true || aiBotWonCondition2===true || aiBotWonCondition3===true || aiBotWonCondition4===true || aiBotWonCondition5===true || aiBotWonCondition6===true || aiBotWonCondition7===true || aiBotWonCondition8===true)
+
         {
-            console.log(finalGameBoard[i]);
+            // console.log("Yayyyy aiBot won");
+            console.log("aiBot winning conditions "+" 0,1,2:" + aiBotWonCondition1 + 
+                        " 3,4,5: "+ aiBotWonCondition2 + 
+                        " 6,7,8: "+ aiBotWonCondition3 + 
+                        " 0,3,6: "+ aiBotWonCondition4 + 
+                        " 1,4,7: "+ aiBotWonCondition5 + 
+                        " 2,5,8: "+ aiBotWonCondition6 + 
+                        " 0,4,8: "+ aiBotWonCondition7 + 
+                        " 2,4,6: "+ aiBotWonCondition8);
+
+            displayController("aiBotWon");
+
+            return;
+        }
+
+        else 
+        {
+            displayController("draw");
         }
 
 
-
-        console.log(compareArrays(playerWin, winningCondition1)); 
-        console.log(compareArrays(aiBotWin,winningCondition1));
-        
-        console.log(compareArrays(playerWin, winningCondition2)); 
-        console.log(compareArrays(aiBotWin,winningCondition2)); 
-
-        console.log(compareArrays(playerWin, winningCondition3)); 
-        console.log(compareArrays(aiBotWin,winningCondition3)); 
-
-        console.log(compareArrays(playerWin, winningCondition4)); 
-        console.log(compareArrays(aiBotWin,winningCondition4)); 
-7       
-        console.log(compareArrays(playerWin, winningCondition5)); 
-        console.log(compareArrays(aiBotWin,winningCondition5)); 
-
-        console.log(compareArrays(playerWin, winningCondition6)); 
-        console.log(compareArrays(aiBotWin,winningCondition6)); 
-
-        console.log(compareArrays(playerWin, winningCondition7)); 
-        console.log(compareArrays(aiBotWin,winningCondition7)); 
-
-        console.log(compareArrays(playerWin, winningCondition8)); 
-        console.log(compareArrays(aiBotWin,winningCondition8)); 
-
     }
+
+const endGame=function()
+{
+    displayController("gameOver");
+    gameMemory.gameStatus.lastTurn==="gameOver"
+
+}
 
     // function playerTurn(playerChoice)
     // {
@@ -230,7 +286,7 @@ a.every((element, index) => element === b[index]);
     
 
 
-    return {randomChoice,aiBot,playGame,player,checkForWinner} // This will return the Factory functions
+    return {randomChoice,aiBot,playGame,player,checkForWinner,endGame} // This will return the Factory functions
 
 
 }
@@ -284,6 +340,23 @@ const displayController= (function (displayThis)
             return gameMemory.gameStatus.gameBoard;
 
             break;
+        
+        case "playerWon":
+            console.log("Winner is: " + gameMemory.playerDetails.playerName);
+            break;
+
+        case "aiBotWon":
+            console.log("Winner is: AiBot");
+            break;
+
+        case "gameOver":
+            console.log("Game Over");
+            break;
+
+        case "draw":
+            console.log("It's a draw, well played both of you");
+            break;
+
     }
     
             // return {consoleOut};
