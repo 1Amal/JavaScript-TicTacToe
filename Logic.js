@@ -31,7 +31,8 @@ const gameLogic =function ()
             {
                 gameMemory.gameStatus.turnNo+=1;
                 console.log(gameMemory.gameStatus.turnNo);    
-                playRound.player();
+                // playRound.player();
+                player();
                     
             }
 //This will run the function to generate aiBot response
@@ -41,7 +42,8 @@ const gameLogic =function ()
                 gameMemory.gameStatus.lastTurn="aiBot";
                 gameMemory.gameStatus.turnNo+=1;
                 console.log(gameMemory.gameStatus.turnNo);  
-                playRound.aiBot();
+                // playRound.aiBot();
+                aiBot();
 
             }
     }
@@ -59,17 +61,10 @@ function randomChoice(minVal, maxVal)
 
     }    
 
-function checkGameBoard(indexNo)
-    {
-       let currentGameMemory= gameMemory.gameStatus.gameBoard;
-       let indexNoStatus=(gameMemory.gameStatus.gameBoard[indexNo]==="null");
-       console.log("Is gameBoard Index empty? " + indexNoStatus);
 
-        return {checkGameBoard, currentGameMemory,indexNo,indexNoStatus}
-    }
   
 // Logic for player to input choice
-    function player()
+   const player = function ()
     {
         let playerChoice;
 
@@ -101,7 +96,7 @@ function checkGameBoard(indexNo)
     }
 
 //Logic for aiBot
-    function aiBot()
+    const aiBot = function ()
     {
         let nextChoice=randomChoice(0,9).randomNumber;
         console.log("NextChoice Variable :" + nextChoice);
@@ -129,21 +124,101 @@ function checkGameBoard(indexNo)
            
         }
 
-  
-        // playRound.playGame();
-        return {aiBot}
+       return {aiBot}
     }
 
-    function playerTurn(playerChoice)
+    const checkForWinner=function()
     {
-        console.log(playerChoice);
-        gameMemory.gameStatus.gameBoard.push(playerChoice);
+        gameMemory.gameStatus.gameBoard=["Amal","Amal","Amal","aiBot","Amal","Amal","aiBot","aiBot","Amal"]; //This is for testing only
+        
+        const finalGameBoard= displayController("gameBoard"); 
 
-        return;
+        gameMemory.playerDetails.playerName="Amal"; //This is for testing only
+
+
+
+        const playerWin=[gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName]; // Player win array for comparison
+
+        console.log(playerWin);
+
+        const aiBotWin=["aiBot","aiBot","aiBot"]; // aiBot win array for comparison
+
+
+        const winningCondition1=[gameMemory.gameStatus.gameBoard[0],gameMemory.gameStatus.gameBoard[1],gameMemory.gameStatus.gameBoard[2]]; //[0,1,2];
+        
+        const winningCondition2=[gameMemory.gameStatus.gameBoard[3],gameMemory.gameStatus.gameBoard[4],gameMemory.gameStatus.gameBoard[5]];//[3,4.5];
+
+        const winningCondition3=[gameMemory.gameStatus.gameBoard[6],gameMemory.gameStatus.gameBoard[7],gameMemory.gameStatus.gameBoard[8]];//[6,7,8];
+
+        const winningCondition4=[gameMemory.gameStatus.gameBoard[0],gameMemory.gameStatus.gameBoard[3],gameMemory.gameStatus.gameBoard[6]];//[0,3,6];
+
+        const winningCondition5=[gameMemory.gameStatus.gameBoard[1],gameMemory.gameStatus.gameBoard[4],gameMemory.gameStatus.gameBoard[7]];//[1,4,7];
+
+        const winningCondition6=[gameMemory.gameStatus.gameBoard[2],gameMemory.gameStatus.gameBoard[5],gameMemory.gameStatus.gameBoard[8]];//[2,5,8];
+
+        const winningCondition7=[gameMemory.gameStatus.gameBoard[0],gameMemory.gameStatus.gameBoard[4],gameMemory.gameStatus.gameBoard[8]]; //[0,4,8];
+
+        const winningCondition8=[gameMemory.gameStatus.gameBoard[2],gameMemory.gameStatus.gameBoard[4],gameMemory.gameStatus.gameBoard[6]];//[2,4,6];
+        
+        console.log(winningCondition1);
+
+        for (let i=0; i<finalGameBoard.length; i++)
+        {
+            console.log(finalGameBoard[i]);
+        }
+
+//Function to compare two arrays
+        const compareArrays = (a, b) =>
+        a.length === b.length &&
+        a.every((element, index) => element === b[index]);
+
+        console.log(compareArrays(playerWin, winningCondition1)); 
+        console.log(compareArrays(aiBotWin,winningCondition1));
+        
+        console.log(compareArrays(playerWin, winningCondition2)); 
+        console.log(compareArrays(aiBotWin,winningCondition2)); 
+
+        console.log(compareArrays(playerWin, winningCondition3)); 
+        console.log(compareArrays(aiBotWin,winningCondition3)); 
+
+        console.log(compareArrays(playerWin, winningCondition4)); 
+        console.log(compareArrays(aiBotWin,winningCondition4)); 
+7       
+        console.log(compareArrays(playerWin, winningCondition5)); 
+        console.log(compareArrays(aiBotWin,winningCondition5)); 
+
+        console.log(compareArrays(playerWin, winningCondition6)); 
+        console.log(compareArrays(aiBotWin,winningCondition6)); 
+
+        console.log(compareArrays(playerWin, winningCondition7)); 
+        console.log(compareArrays(aiBotWin,winningCondition7)); 
+
+        console.log(compareArrays(playerWin, winningCondition8)); 
+        console.log(compareArrays(aiBotWin,winningCondition8)); 
+
     }
 
+    // function playerTurn(playerChoice)
+    // {
+    //     console.log(playerChoice);
+    //     gameMemory.gameStatus.gameBoard.push(playerChoice);
 
-    return {randomChoice,aiBot,playerTurn,playGame,checkGameBoard,player} // This will return the Factory functions
+    //     return;
+    // }
+
+    // function checkGameBoard(indexNo)
+    // {
+    //    let currentGameMemory= gameMemory.gameStatus.gameBoard;
+    //    let indexNoStatus=(gameMemory.gameStatus.gameBoard[indexNo]==="null");
+    //    console.log("Is gameBoard Index empty? " + indexNoStatus);
+
+    //     return {checkGameBoard, currentGameMemory,indexNo,indexNoStatus}
+    // }
+
+    
+
+
+    return {randomChoice,aiBot,playGame,player,checkForWinner} // This will return the Factory functions
 
 
 }
@@ -191,9 +266,10 @@ const displayController= (function (displayThis)
 
             break;
         
-        case 1:
+        case "gameBoard":
             
-            consoleOut=console.log("Output From Display Controller: " + displayThis);
+            // consoleOut=console.log("Output From Display Controller: " + gameMemory.gameStatus);
+            return gameMemory.gameStatus.gameBoard;
 
             break;
     }
@@ -202,6 +278,8 @@ const displayController= (function (displayThis)
 
 
 });
+
+
 
 const playRound=gameLogic();
 // playRound.playGame();
