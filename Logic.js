@@ -129,36 +129,51 @@ function randomChoice(minVal, maxVal)
 
     const checkForWinner=function()
     {
-        gameMemory.gameStatus.gameBoard=["Amal","Amal","Amal","aiBot","Amal","Amal","aiBot","aiBot","Amal"]; //This is for testing only
-        
         const finalGameBoard= displayController("gameBoard"); 
 
+        gameMemory.gameStatus.gameBoard=["aiBot","aiBot","aiBot","Amal","Amal","Amal","aiBot","Amal","aiBot"]; //This is for testing only
+        
         gameMemory.playerDetails.playerName="Amal"; //This is for testing only
 
-
-
-        const playerWin=[gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName]; // Player win array for comparison
-
+// Player win array for comparison
+        const playerWin=[gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName]; 
         console.log(playerWin);
 
-        const aiBotWin=["aiBot","aiBot","aiBot"]; // aiBot win array for comparison
+// aiBot win array for comparison
+        const aiBotWin=["aiBot","aiBot","aiBot"]; 
 
-
+// Straight Line: All three Row wins: 0,1,2 in any combination
         const winningCondition1=[gameMemory.gameStatus.gameBoard[0],gameMemory.gameStatus.gameBoard[1],gameMemory.gameStatus.gameBoard[2]]; //[0,1,2];
-        
+
+// Straight Line: All three Row wins:3,4,5 in any combination
         const winningCondition2=[gameMemory.gameStatus.gameBoard[3],gameMemory.gameStatus.gameBoard[4],gameMemory.gameStatus.gameBoard[5]];//[3,4.5];
 
+// Straight Line: All three Row wins: 6,7,8 in any combination
         const winningCondition3=[gameMemory.gameStatus.gameBoard[6],gameMemory.gameStatus.gameBoard[7],gameMemory.gameStatus.gameBoard[8]];//[6,7,8];
-
+        
+// Straight Line: All three Column wins:0,3,6 in any combination
         const winningCondition4=[gameMemory.gameStatus.gameBoard[0],gameMemory.gameStatus.gameBoard[3],gameMemory.gameStatus.gameBoard[6]];//[0,3,6];
 
+// Straight Line: All three Column wins:1,4,7 in any combination
         const winningCondition5=[gameMemory.gameStatus.gameBoard[1],gameMemory.gameStatus.gameBoard[4],gameMemory.gameStatus.gameBoard[7]];//[1,4,7];
 
+// Straight Line: All three Column wins:2,5,8 in any combination
         const winningCondition6=[gameMemory.gameStatus.gameBoard[2],gameMemory.gameStatus.gameBoard[5],gameMemory.gameStatus.gameBoard[8]];//[2,5,8];
 
+// Straight Line: All three Diagonal wins: 0,4,8 in any combination
         const winningCondition7=[gameMemory.gameStatus.gameBoard[0],gameMemory.gameStatus.gameBoard[4],gameMemory.gameStatus.gameBoard[8]]; //[0,4,8];
 
+// Straight Line: All three Diagonal wins: 2,4,6 in any combination
         const winningCondition8=[gameMemory.gameStatus.gameBoard[2],gameMemory.gameStatus.gameBoard[4],gameMemory.gameStatus.gameBoard[6]];//[2,4,6];
+
+// Conditions for Tie/Draw, Anything that is not in the above win conditions will be a draw/Tie after all 9 grid slots have been filled
+
+
+//Function to compare two arrays and if both arrays are equal will give out true and if they are different will give out false. Using this you can compare above win conditions against two fixed arrays of const aiBotWin=["aiBot","aiBot","aiBot"] which will give aiBot win condition and const playerWin=[gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName]; which will give player win condition. 
+
+const compareArrays = (a, b) =>
+a.length === b.length &&
+a.every((element, index) => element === b[index]);
         
         console.log(winningCondition1);
 
@@ -167,10 +182,7 @@ function randomChoice(minVal, maxVal)
             console.log(finalGameBoard[i]);
         }
 
-//Function to compare two arrays
-        const compareArrays = (a, b) =>
-        a.length === b.length &&
-        a.every((element, index) => element === b[index]);
+
 
         console.log(compareArrays(playerWin, winningCondition1)); 
         console.log(compareArrays(aiBotWin,winningCondition1));
