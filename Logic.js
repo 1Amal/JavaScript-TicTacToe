@@ -14,7 +14,7 @@ const newGame=function()
         gameMemory.gameStatus.gameBoard=["null","null","null","null","null","null","null","null","null"];
         gameMemory.gameStatus.turnNo=0;
         gameMemory.gameStatus.lastTurn="aiBot";
-        displayController("newGame");
+        newDisplay.displayOut("newGame");
         playGame();
         return{newGame};
 
@@ -22,7 +22,7 @@ const newGame=function()
 
     const gameOver=function()
     {
-        displayController("gameOver");
+        newDisplay.displayOut("gameOver");
         // gameMemory.gameStatus.lastTurn==="gameOver";
         gameMemory.gameStatus.turnNo=11;
         gameMemory.gameStatus.lastTurn==="New";
@@ -137,7 +137,7 @@ const newGame=function()
 // Function to check for winning conditions
     const checkForWinner=function()
         {
-            const finalGameBoard= displayController("gameBoard"); 
+            const finalGameBoard= newDisplay.displayOut("gameBoard"); 
 
         // gameMemory.gameStatus.gameBoard=["aiBot","aiBot","aiBot","aiBot","aiBot","aiBot","aiBot","aiBot","aiBot"]; //This is for testing only
         
@@ -217,7 +217,7 @@ const newGame=function()
                 " 2,4,6: "+ playerWonCondition8);
 
 
-                displayController("playerWon");
+                newDisplay.displayOut("playerWon");
                 gameOver();
 
 
@@ -239,7 +239,7 @@ const newGame=function()
                         " 0,4,8: "+ aiBotWonCondition7 + 
                         " 2,4,6: "+ aiBotWonCondition8);
 
-            displayController("aiBotWon");
+            newDisplay.displayOut("aiBotWon");
             gameOver();
 
             return;
@@ -290,35 +290,27 @@ const gameMemory= (function ()
 
 // *.*.*.*.*.*.*.*.*.*. Display Controller *.*.*.*.*.*.*.*.*.*.
 
-const displayController= function (displayThis)
+const displayController= function ()
 {
-    const displayOut=function()
+   
+   
+    const displayOut=function(displayThis)
     {
-
-    }
-
-    const displayIn=function()
-    {
-
-    }
-    let consoleOut;
+        let consoleOut;
    
     switch (displayThis)
     {
         case "newGame":
             consoleOut=console.log("Output From Display Controller: " + displayThis);
-            // gameMemory.playerDetails.playerName=prompt("Please Enter Your Name");
             const playerName=document.querySelector("#playerName").value;
             gameMemory.playerDetails.playerName=playerName;
 
             break;
         
         case "gameBoard":
-            
-            // consoleOut=console.log("Output From Display Controller: " + gameMemory.gameStatus);
+       
             return gameMemory.gameStatus.gameBoard;
-
-            break;
+            // break;
         
         case "playerWon":
             console.log("Winner is: " + gameMemory.playerDetails.playerName);
@@ -338,7 +330,9 @@ const displayController= function (displayThis)
 
     }
 
-    const buttonCapture=function()
+    }
+
+    const displayIn=function()
     {
         const buttons=document.querySelectorAll('button');
         buttons.forEach((button)=>
@@ -396,41 +390,8 @@ const displayController= function (displayThis)
         })
         )
 
-        return{buttonCapture};
+        return{displayIn};
     }
-
-
-    // const buttons = document.querySelectorAll('button');
-    // buttons.forEach((button) => 
-    // {
-    //   button.addEventListener('click', () => 
-    //     {
-
-    //         if (button.id==="0"
-    //             ||button.id==="1"
-    //             ||button.id==="2"
-    //             ||button.id==="3"
-    //             ||button.id==="4"
-    //             ||button.id==="5"
-    //             ||button.id==="6"
-    //             ||button.id==="7"
-    //             ||button.id==="8"
-    //             ||button.id==="9"
-    //         )
-    //             { // Following code will add the pressed numbers to the array
-    //                 calculationArray.push(button.id);
-    //                 console.log(calculationArray);
-        
-    //             }
-    //             // Following code will add pressed operators to the operator type variable
-    //     else if (button.id==="/"
-    //             ||button.id==="*"
-    //             ||button.id==="-"
-    //             ||button.id==="+"
-    //             // ||button.id==="="
-    //     }
-
-    // }
 
 
     console.log("DisplayController Loaded")
@@ -438,11 +399,11 @@ const displayController= function (displayThis)
     console.log(gameMemory);
     const newGameRound=gameLogic();
 
-    return{buttonCapture,displayController,displayIn,displayOut}
+    return{displayIn,displayController,displayIn,displayOut}
 
 }
 
 
 const newDisplay=displayController();
-newDisplay.buttonCapture();
+newDisplay.displayIn();
 
