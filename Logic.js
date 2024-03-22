@@ -78,6 +78,7 @@ const newGame=function()
         console.log(gameMemory.playerDetails.playerName +"'s Turn");
         
         playerChoice=prompt("Please Enter Grid number between 0-9: ");
+        
         console.log("Players Choice of Gameboard Index is: " + playerChoice);
                     
         if (gameMemory.gameStatus.gameBoard[playerChoice]==="null")
