@@ -1,3 +1,6 @@
+html{
+    font-size:16px;
+}
 h1
 {
     color: #1eb62df9;
@@ -8,13 +11,42 @@ h1
     display: grid;
 }
 
+.gameContainer
+{
+    background-color: #eba122f9;
+    padding:2rem;
+}
+
 .gameBoardContainer
 {
     display: grid;
     border: 2px #252b26f9 solid;
-    width:9rem;
+    width:10rem;
     height:10rem;
-    margin-left:150px;
+    margin-left:1rem;
+    padding:1rem;
+}
+
+.gameDashboard
+{
+    display:grid;
+    grid-template-rows: repeat(1,2fr);
+    grid-template-columns: repeat(2,1fr);
+    column-gap: 10px;
+
+}
+    
+
+
+.gameStatus
+{
+
+}
+
+
+.gameControl
+{
+
 }
 
 .boardInfo, td, tr
@@ -24,9 +56,11 @@ padding:2rem;
 border-collapse: collapse;
 }
 
-button
+.gameBoardContainer button
 {
     padding:1rem;
+    width:3rem;
+    height: 3rem;
     font-size: 1rem;
 }
 
