@@ -290,15 +290,26 @@ const gameMemory= (function ()
 
 // *.*.*.*.*.*.*.*.*.*. Display Controller *.*.*.*.*.*.*.*.*.*.
 
-const displayController= (function (displayThis)
+const displayController= function (displayThis)
 {
+    const displayOut=function()
+    {
+
+    }
+
+    const displayIn=function()
+    {
+
+    }
     let consoleOut;
    
     switch (displayThis)
     {
         case "newGame":
             consoleOut=console.log("Output From Display Controller: " + displayThis);
-            gameMemory.playerDetails.playerName=prompt("Please Enter Your Name");
+            // gameMemory.playerDetails.playerName=prompt("Please Enter Your Name");
+            const playerName=document.querySelector("#playerName").value;
+            gameMemory.playerDetails.playerName=playerName;
 
             break;
         
@@ -326,11 +337,112 @@ const displayController= (function (displayThis)
             break;
 
     }
-    
 
-});
+    const buttonCapture=function()
+    {
+        const buttons=document.querySelectorAll('button');
+        buttons.forEach((button)=>
+        button.addEventListener('click',()=>
+        {
+            if (button.id==="startGame")
+            {
+                newGameRound.newGame();
+            }
 
-const newGameRound=gameLogic();
-// playRound.playGame();
+            else if (button.id==="grid-0")
+            {
+                console.log("grid-0 pressed");
+            }
 
-console.log(gameMemory);
+            else if (button.id==="grid-1")
+            {
+                console.log("grid-1 pressed");
+            }
+
+            else if (button.id==="grid-2")
+            {
+                console.log("grid-2pressed");
+            }
+
+            else if (button.id==="grid-3")
+            {
+                console.log("grid-3 pressed");
+            }
+
+            else if (button.id==="grid-4")
+            {
+                console.log("grid-4 pressed");
+            }
+
+            else if (button.id==="grid-5")
+            {
+                console.log("grid-5 pressed");
+            }
+
+            else if (button.id==="grid-6")
+            {
+                console.log("grid-6 pressed");
+            }
+
+            else if (button.id==="grid-7")
+            {
+                console.log("grid-7 pressed");
+            }
+
+            else if (button.id==="grid-8")
+            {
+                console.log("grid-8 pressed");
+            }
+        })
+        )
+
+        return{buttonCapture};
+    }
+
+
+    // const buttons = document.querySelectorAll('button');
+    // buttons.forEach((button) => 
+    // {
+    //   button.addEventListener('click', () => 
+    //     {
+
+    //         if (button.id==="0"
+    //             ||button.id==="1"
+    //             ||button.id==="2"
+    //             ||button.id==="3"
+    //             ||button.id==="4"
+    //             ||button.id==="5"
+    //             ||button.id==="6"
+    //             ||button.id==="7"
+    //             ||button.id==="8"
+    //             ||button.id==="9"
+    //         )
+    //             { // Following code will add the pressed numbers to the array
+    //                 calculationArray.push(button.id);
+    //                 console.log(calculationArray);
+        
+    //             }
+    //             // Following code will add pressed operators to the operator type variable
+    //     else if (button.id==="/"
+    //             ||button.id==="*"
+    //             ||button.id==="-"
+    //             ||button.id==="+"
+    //             // ||button.id==="="
+    //     }
+
+    // }
+
+
+    console.log("DisplayController Loaded")
+
+    console.log(gameMemory);
+    const newGameRound=gameLogic();
+
+    return{buttonCapture,displayController,displayIn,displayOut}
+
+}
+
+
+const newDisplay=displayController();
+newDisplay.buttonCapture();
+
