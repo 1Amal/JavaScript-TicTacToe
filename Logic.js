@@ -23,7 +23,6 @@ const newGame=function()
     const gameOver=function()
     {
         newDisplay.displayOut("gameOver");
-        // gameMemory.gameStatus.lastTurn==="gameOver";
         gameMemory.gameStatus.turnNo=11;
         gameMemory.gameStatus.lastTurn==="New";
         return;
@@ -93,7 +92,6 @@ const newGame=function()
         else if (gameMemory.gameStatus.gameBoard[playerChoice]==="aiBot" || gameMemory.playerDetails.playerName)
             {
                 console.log("Error Array not empty, so not safe to store player input, please try again");
-                // playerChoice=prompt("Please Enter Grid number between 0-9: ");
                 player();
 
             }
@@ -138,10 +136,6 @@ const newGame=function()
     const checkForWinner=function()
         {
             const finalGameBoard= newDisplay.displayOut("gameBoard"); 
-
-        // gameMemory.gameStatus.gameBoard=["aiBot","aiBot","aiBot","aiBot","aiBot","aiBot","aiBot","aiBot","aiBot"]; //This is for testing only
-        
-        // gameMemory.playerDetails.playerName="Amal"; //This is for testing only
 
 // Player win array for comparison
         const playerWin=[gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName]; 
@@ -205,8 +199,6 @@ const newGame=function()
 //This will check if player has won        
         if (playerWonCondition1===true || playerWonCondition2===true || playerWonCondition3===true || playerWonCondition4===true || playerWonCondition5===true || playerWonCondition6===true || playerWonCondition7===true || playerWonCondition8===true)
             {
-                // console.log("Yayyyy Player won");
-
                 console.log("Player winning conditions "+ " 0,1,2:" + playerWonCondition1 + 
                 " 3,4,5: "+ playerWonCondition2 + 
                 " 6,7,8: "+ playerWonCondition3 + 
@@ -229,7 +221,6 @@ const newGame=function()
         else if (aiBotWonCondition1===true || aiBotWonCondition2===true || aiBotWonCondition3===true || aiBotWonCondition4===true || aiBotWonCondition5===true || aiBotWonCondition6===true || aiBotWonCondition7===true || aiBotWonCondition8===true)
 
         {
-            // console.log("Yayyyy aiBot won");
             console.log("aiBot winning conditions "+" 0,1,2:" + aiBotWonCondition1 + 
                         " 3,4,5: "+ aiBotWonCondition2 + 
                         " 6,7,8: "+ aiBotWonCondition3 + 
@@ -310,7 +301,6 @@ const displayController= function ()
         case "gameBoard":
        
             return gameMemory.gameStatus.gameBoard;
-            // break;
         
         case "playerWon":
             console.log("Winner is: " + gameMemory.playerDetails.playerName);
