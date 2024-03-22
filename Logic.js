@@ -39,7 +39,8 @@ const newGame=function()
             {
                 gameMemory.gameStatus.turnNo+=1;
                 console.log(gameMemory.gameStatus.turnNo);    
-                player();
+                // player();
+                newDisplay.displayIn();
                 checkForWinner();
                     
             }
@@ -71,14 +72,18 @@ const newGame=function()
 
   
 // Logic for player to input choice
-   const player = function ()
+   const player = function (playerInput)
     {
-        let playerChoice;
+        let playerChoice=playerInput;
 
         console.log(gameMemory.playerDetails.playerName +"'s Turn");
         
-        playerChoice=prompt("Please Enter Grid number between 0-9: ");
-        
+        // playerChoice=prompt("Please Enter Grid number between 0-9: ");
+        // newDisplay.displayIn();
+        // playerChoice=gameMemory.playerDetails.playerLastChoice;
+
+
+
         console.log("Players Choice of Gameboard Index is: " + playerChoice);
                     
         if (gameMemory.gameStatus.gameBoard[playerChoice]==="null")
@@ -258,6 +263,7 @@ const gameMemory= (function ()
     const playerDetails={playerName:"",
                          playerMarker:"X",
                          playerWins:0,
+                         playerLastChoice:0,
         
                         }
 
@@ -325,70 +331,96 @@ const displayController= function ()
 
     const displayIn=function()
     {
-        const buttons=document.querySelectorAll('button');
-        buttons.forEach((button)=>
-        button.addEventListener('click',()=>
+        // playerChoice=prompt("Please Enter Grid number between 0-9: ");
+
+        const buttonGameStart=document.querySelector("#startGame");
+        buttonGameStart.addEventListener("click",function()
         {
-            if (button.id==="startGame")
-            {
-                newGameRound.newGame();
-            }
+            alert("Yayyyy Start button clicked")
+        });
 
-            else if (button.id==="grid-0")
-            {
-                console.log("grid-0 pressed");
-            }
 
-            else if (button.id==="grid-1")
-            {
-                console.log("grid-1 pressed");
-            }
 
-            else if (button.id==="grid-2")
-            {
-                console.log("grid-2pressed");
-            }
+    //     while (gameMemory.gameStatus.lastTurn==="aiBot")
+    //     {
 
-            else if (button.id==="grid-3")
-            {
-                console.log("grid-3 pressed");
-            }
+    //     const buttons=document.querySelectorAll('button');
+    //     buttons.forEach((button)=>
+    //     button.addEventListener('click',()=>
+    //     {
+    //         if (button.id==="startGame")
+    //         {
+    //             newGameRound.newGame();
+    //         }
 
-            else if (button.id==="grid-4")
-            {
-                console.log("grid-4 pressed");
-            }
+    //         else if (button.id==="grid-0")
+    //         {
+    //             console.log("grid-0 pressed");
+    //             gameMemory.playerDetails.playerLastChoice=0;
+    //             gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
+                
+    //             newGameRound.playGame();
+                
+    //         }
 
-            else if (button.id==="grid-5")
-            {
-                console.log("grid-5 pressed");
-            }
+    //         else if (button.id==="grid-1")
+    //         {
+    //             console.log("grid-1 pressed");
+    //             gameMemory.playerDetails.playerLastChoice=1;
+    //         }
 
-            else if (button.id==="grid-6")
-            {
-                console.log("grid-6 pressed");
-            }
+    //         else if (button.id==="grid-2")
+    //         {
+    //             console.log("grid-2pressed");
+    //             gameMemory.playerDetails.playerLastChoice=2;
+    //         }
 
-            else if (button.id==="grid-7")
-            {
-                console.log("grid-7 pressed");
-            }
+    //         else if (button.id==="grid-3")
+    //         {
+    //             console.log("grid-3 pressed");
+    //             gameMemory.playerDetails.playerLastChoice=3;
+    //         }
 
-            else if (button.id==="grid-8")
-            {
-                console.log("grid-8 pressed");
-            }
-        })
-        )
+    //         else if (button.id==="grid-4")
+    //         {
+    //             console.log("grid-4 pressed");
+    //             gameMemory.playerDetails.playerLastChoice=4;
+    //         }
+
+    //         else if (button.id==="grid-5")
+    //         {
+    //             console.log("grid-5 pressed");
+    //             gameMemory.playerDetails.playerLastChoice=5;
+    //         }
+
+    //         else if (button.id==="grid-6")
+    //         {
+    //             console.log("grid-6 pressed");
+    //             gameMemory.playerDetails.playerLastChoice=6;
+    //         }
+
+    //         else if (button.id==="grid-7")
+    //         {
+    //             console.log("grid-7 pressed");
+    //             gameMemory.playerDetails.playerLastChoice=7;
+    //         }
+
+    //         else if (button.id==="grid-8")
+    //         {
+    //             console.log("grid-8 pressed");
+    //             gameMemory.playerDetails.playerLastChoice=8;
+    //         }
+    //     })
+    //     )
 
         return{displayIn};
+    // }
     }
 
 
     console.log("DisplayController Loaded")
 
     console.log(gameMemory);
-    const newGameRound=gameLogic();
 
     return{displayIn,displayController,displayIn,displayOut}
 
@@ -397,4 +429,4 @@ const displayController= function ()
 
 const newDisplay=displayController();
 newDisplay.displayIn();
-
+const newGameRound=gameLogic();
