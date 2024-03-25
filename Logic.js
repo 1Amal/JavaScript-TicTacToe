@@ -40,7 +40,6 @@ const newGame=function()
                 gameMemory.gameStatus.turnNo+=1;
                 console.log(gameMemory.gameStatus.turnNo);    
                 player();
-                // newDisplay.displayIn();
                 checkForWinner();
                     
             }
@@ -69,21 +68,34 @@ const newGame=function()
 
         }    
 
-
   
 // Logic for player to input choice
    const player = function (playerInput)
     {
 
         console.log(gameMemory.playerDetails.playerName +"'s Turn");
-        // newDisplay.displayIn(); 
-        let playerChoice=playerInput;
-
+        let playerChoice;
         
         // playerChoice=prompt("Please Enter Grid number between 0-9: ");
-        // gameMemory.playerDetails.playerLastChoice = playerChoice;
+        
+        const buttons=document.querySelectorAll('.gameInputButtons');
+            buttons.forEach((button)=>
+            button.addEventListener('click',()=>
+            {
+                   
+                if (button.id==="grid-0")
+                {
+                    console.log("grid-0 pressed");
+                    gameMemory.playerDetails.playerLastChoice=0;
+                    gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
 
-        // playerChoice=gameMemory.playerDetails.playerLastChoice;
+                    playerChoice=0;
+                    console.log(playerChoice);
+
+                    return;
+                    
+                }
+            }));
 
 
         console.log("Players Choice of Gameboard Index is: " + playerChoice);
@@ -110,7 +122,7 @@ const newGame=function()
 
     }
 
-//Logic for aiBot
+//  Logic for aiBot
     const aiBot = function ()
     {
         let nextChoice=randomChoice(0,9).randomNumber;
@@ -362,7 +374,8 @@ const displayController= function ()
                     gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
                     
                     // newGameRound.playGame();
-                    newGameRound.player(0);
+                    // newGameRound.player(0);
+                    return 0;
                     
                 }
     
@@ -420,9 +433,9 @@ const displayController= function ()
         // }
 
 
-        return{displayIn};
+        // return{displayIn};
  
-    }
+    }();
 
 
     console.log("DisplayController Loaded")
@@ -435,5 +448,5 @@ const displayController= function ()
 
 
 const newDisplay=displayController();
-newDisplay.displayIn();
+// newDisplay.displayIn();
 const newGameRound=gameLogic();
