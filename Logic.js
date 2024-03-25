@@ -39,8 +39,8 @@ const newGame=function()
             {
                 gameMemory.gameStatus.turnNo+=1;
                 console.log(gameMemory.gameStatus.turnNo);    
-                // player();
-                newDisplay.displayIn();
+                player();
+                // newDisplay.displayIn();
                 checkForWinner();
                     
             }
@@ -78,9 +78,9 @@ const newGame=function()
 
         console.log(gameMemory.playerDetails.playerName +"'s Turn");
         
-        // playerChoice=prompt("Please Enter Grid number between 0-9: ");
+        playerChoice=prompt("Please Enter Grid number between 0-9: ");
         // newDisplay.displayIn();
-        // playerChoice=gameMemory.playerDetails.playerLastChoice;
+        gameMemory.playerDetails.playerLastChoice = playerChoice;
 
 
 
@@ -336,7 +336,9 @@ const displayController= function ()
         const buttonGameStart=document.querySelector("#startGame");
         buttonGameStart.addEventListener("click",function()
         {
-            alert("Yayyyy Start button clicked")
+            alert("Yayyyy Start button clicked");
+            newGameRound.newGame();
+
         });
 
 
