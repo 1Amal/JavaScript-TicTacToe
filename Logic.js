@@ -76,7 +76,7 @@ const newGame=function()
     {
 
         console.log(gameMemory.playerDetails.playerName +"'s Turn");
-        newDisplay.displayIn(); 
+        // newDisplay.displayIn(); 
         let playerChoice=playerInput;
 
         
@@ -97,10 +97,12 @@ const newGame=function()
                 return;
             }
 
-        else if (gameMemory.gameStatus.gameBoard[playerChoice]==="aiBot" || gameMemory.playerDetails.playerName)
-            {
+        else if (gameMemory.gameStatus.gameBoard[playerChoice]==="aiBot" || gameMemory.gameStatus.gameBoard[playerChoice]===gameMemory.playerDetails.playerName)
+
+           {
                 console.log("Error Array not empty, so not safe to store player input, please try again");
                 player();
+                return;
 
             }
 
@@ -338,10 +340,11 @@ const displayController= function ()
         const buttonGameStart=document.querySelector("#startGame");
         buttonGameStart.addEventListener("click",function()
         {
-            // alert("Yayyyy Start button clicked");
             newGameRound.newGame();
 
         });
+
+
 
 
         // while (gameMemory.gameStatus.lastTurn==="aiBot")
@@ -359,7 +362,7 @@ const displayController= function ()
                     gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
                     
                     // newGameRound.playGame();
-                    player(0);
+                    newGameRound.player(0);
                     
                 }
     
@@ -367,6 +370,9 @@ const displayController= function ()
                 {
                     console.log("grid-1 pressed");
                     gameMemory.playerDetails.playerLastChoice=1;
+                    document.querySelector("#grid-1").disabled = true;
+                    document.querySelector("#grid-1").innerText = "X";
+
                 }
     
                 else if (button.id==="grid-2")
