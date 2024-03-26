@@ -21,8 +21,8 @@ h1
 {
     display: grid;
     border: 2px #252b26f9 solid;
-    width:10rem;
-    height:10rem;
+    width:20rem;
+    height:20rem;
     margin-left:1rem;
     padding:1rem;
 }
@@ -59,8 +59,8 @@ border-collapse: collapse;
 .gameBoardContainer button
 {
     padding:1rem;
-    width:3rem;
-    height: 3rem;
+    width:5rem;
+    height: 5rem;
     font-size: 1rem;
 }
 

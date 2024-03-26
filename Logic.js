@@ -38,7 +38,8 @@ const newGame=function()
             if (gameMemory.gameStatus.lastTurn==="aiBot") 
             {
                 gameMemory.gameStatus.turnNo+=1;
-                console.log(gameMemory.gameStatus.turnNo);    
+                console.log(gameMemory.gameStatus.turnNo);
+                document.querySelector("#turnNo").innerText =gameMemory.playerDetails.playerName;
                 player();
                 checkForWinner();
                     
@@ -49,7 +50,8 @@ const newGame=function()
                 console.log("aiBot's Turn");
                 gameMemory.gameStatus.lastTurn="aiBot";
                 gameMemory.gameStatus.turnNo+=1;
-                console.log(gameMemory.gameStatus.turnNo);  
+                console.log(gameMemory.gameStatus.turnNo);
+                document.querySelector("#turnNo").innerText ="aiBot";  
                 aiBot();
                 checkForWinner();
 
@@ -74,28 +76,50 @@ const newGame=function()
     {
 
         console.log(gameMemory.playerDetails.playerName +"'s Turn");
+        document.querySelector("#turnNo").innerText =gameMemory.playerDetails.playerName;
         let playerChoice;
+        playerChoice=prompt("Please Enter Grid number between 0-9: ");
+
+
+
+        // function firstFunction(callback) {
+        //     console.log('First function executed.');
+            
+        //     // Execute the callback function
+        //     if (typeof callback === 'function') {
+        //         callback();
+        //     }
+        // }
         
-        // playerChoice=prompt("Please Enter Grid number between 0-9: ");
+        // function secondFunction() {
+        //     console.log('Second function executed.');
+        // }
         
-        const buttons=document.querySelectorAll('.gameInputButtons');
-            buttons.forEach((button)=>
-            button.addEventListener('click',()=>
-            {
+        // // Execute functions sequentially with callback
+        // firstFunction(secondFunction); // Pass secondFunction as a callback to firstFunction
+
+
+
+        
+        
+        // const buttons=document.querySelectorAll('.gameInputButtons');
+        //     buttons.forEach((button)=>
+        //     button.addEventListener('click',()=>
+        //     {
                    
-                if (button.id==="grid-0")
-                {
-                    console.log("grid-0 pressed");
-                    gameMemory.playerDetails.playerLastChoice=0;
-                    gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
+        //         if (button.id==="grid-0")
+        //         {
+        //             console.log("grid-0 pressed");
+        //             gameMemory.playerDetails.playerLastChoice=0;
+        //             gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
 
-                    playerChoice=0;
-                    console.log(playerChoice);
+        //             playerChoice=0;
+        //             console.log(playerChoice);
 
-                    return;
+        //             return;
                     
-                }
-            }));
+        //         }
+        //     }));
 
 
         console.log("Players Choice of Gameboard Index is: " + playerChoice);
@@ -261,6 +285,7 @@ const newGame=function()
         else if (gameMemory.gameStatus.turnNo>=9)
         {
             console.log("Game end in a Draw");
+            newDisplay.displayOut("draw");
             gameOver();
         }
 
@@ -322,15 +347,29 @@ const displayController= function ()
             break;
         
         case "gameBoard":
-       
-            return gameMemory.gameStatus.gameBoard;
+
+        document.querySelector("#grid-0").innerText=gameMemory.gameStatus.gameBoard[0];
+        document.querySelector("#grid-1").innerText=gameMemory.gameStatus.gameBoard[1];
+        document.querySelector("#grid-2").innerText=gameMemory.gameStatus.gameBoard[2];
+        document.querySelector("#grid-3").innerText=gameMemory.gameStatus.gameBoard[3];
+        document.querySelector("#grid-4").innerText=gameMemory.gameStatus.gameBoard[4];
+        document.querySelector("#grid-5").innerText=gameMemory.gameStatus.gameBoard[5];
+        document.querySelector("#grid-6").innerText=gameMemory.gameStatus.gameBoard[6];
+        document.querySelector("#grid-7").innerText=gameMemory.gameStatus.gameBoard[7];
+        document.querySelector("#grid-8").innerText=gameMemory.gameStatus.gameBoard[8];
+
+        // document.querySelector("#grid-1").disabled = true;
+             
+            break ;
         
         case "playerWon":
             console.log("Winner is: " + gameMemory.playerDetails.playerName);
+            document.querySelector("#finalResult").innerText=gameMemory.playerDetails.playerName;
             break;
 
         case "aiBotWon":
             console.log("Winner is: AiBot");
+            document.querySelector("#finalResult").innerText="aiBot";
             break;
 
         case "gameOver":
@@ -339,8 +378,9 @@ const displayController= function ()
 
         case "draw":
             console.log("It's a draw, well played both of you");
+            document.querySelector("#finalResult").innerText="It's a draw, well played both of you";
             break;
-
+        
     }
 
     }
