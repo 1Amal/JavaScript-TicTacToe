@@ -17,6 +17,7 @@ const newGame=function()
         gameMemory.gameStatus.lastTurn="aiBot";
         document.querySelector("#winningConditions").innerText="";
         document.querySelector("#turnNo").innerText = "";
+        document.querySelector("#finalResult").innerText="";
         newDisplay.displayOut("newGame");
 
         return{newGame};
@@ -104,7 +105,7 @@ const newGame=function()
            {
                 console.log("Error Array not empty, so not safe to store player input, please try again");
 
-                alert("Error Array not empty, so not safe to store player input, please try again");
+                alert("Grid location is already selected, please try again");
                 return;
 
             }
@@ -188,6 +189,7 @@ const newGame=function()
         a.every((element, index) => element === b[index]);
    
 //This will save the wining condition status to a variable which can be used for comparison
+//Player Win conditions
         let playerWonCondition1= compareArrays(playerWin, winningCondition1); 
         let playerWonCondition2= compareArrays(playerWin, winningCondition2); 
         let playerWonCondition3= compareArrays(playerWin, winningCondition3); 
@@ -197,7 +199,7 @@ const newGame=function()
         let playerWonCondition7= compareArrays(playerWin, winningCondition7); 
         let playerWonCondition8= compareArrays(playerWin, winningCondition8); 
 
-
+//aiBot Win conditions
         let aiBotWonCondition1=compareArrays(aiBotWin,winningCondition1);
         let aiBotWonCondition2=compareArrays(aiBotWin,winningCondition2); 
         let aiBotWonCondition3=compareArrays(aiBotWin,winningCondition3); 
@@ -265,11 +267,12 @@ const newGame=function()
             return;
         }
 
-        else if (gameMemory.gameStatus.turnNo>=8)
+        else if (gameMemory.gameStatus.turnNo>=9)
         {
             console.log("Game end in a Draw");
             newDisplay.displayOut("draw");
             gameOver();
+            return;
         }
 
     }
