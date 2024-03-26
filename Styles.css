@@ -21,9 +21,9 @@ h1
 {
     display: grid;
     border: 2px #252b26f9 solid;
-    width:20rem;
-    height:20rem;
-    margin-left:1rem;
+    width:15rem;
+    height:15rem;
+    /* margin-left:1rem; */
     padding:1rem;
 }
 
@@ -38,7 +38,7 @@ h1
     
 
 
-.gameStatus
+/* .gameStatus
 {
 
 }
@@ -47,7 +47,7 @@ h1
 .gameControl
 {
 
-}
+} */
 
 .boardInfo, td, tr
 {
@@ -58,9 +58,9 @@ border-collapse: collapse;
 
 .gameBoardContainer button
 {
-    padding:1rem;
-    width:5rem;
-    height: 5rem;
+    /* padding:1rem; */
+    width:4rem;
+    height: 4rem;
     font-size: 1rem;
 }
 
