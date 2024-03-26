@@ -18,6 +18,7 @@ const newGame=function()
         document.querySelector("#winningConditions").innerText="";
         document.querySelector("#turnNo").innerText = "";
         document.querySelector("#finalResult").innerText="";
+        document.querySelector("#gameStatus").innerText="Waiting for player input";
         newDisplay.displayOut("newGame");
 
         return{newGame};
@@ -29,6 +30,8 @@ const newGame=function()
         newDisplay.displayOut("gameOver");
         gameMemory.gameStatus.turnNo=11;
         gameMemory.gameStatus.lastTurn==="New";
+        document.querySelector("#gameStatus").innerText="Game Over";
+
         return;
 
     }
@@ -341,7 +344,6 @@ const displayController= function ()
         document.querySelector("#grid-7").innerText=gameMemory.gameStatus.gameBoard[7];
         document.querySelector("#grid-8").innerText=gameMemory.gameStatus.gameBoard[8];
 
-        // document.querySelector("#grid-1").disabled = true;
              
             break ;
         
@@ -349,6 +351,8 @@ const displayController= function ()
             // gameMemory.playerDetails.playerName;
             console.log("Winner is: " + gameMemory.playerDetails.playerName);
             document.querySelector("#finalResult").innerText=gameMemory.playerDetails.playerName;
+            document.querySelector("#gameStatus").innerText="Game Over";
+
 
    
             break;
@@ -356,6 +360,7 @@ const displayController= function ()
         case "aiBotWon":
             console.log("Winner is: AiBot");
             document.querySelector("#finalResult").innerText="aiBot";
+            document.querySelector("#gameStatus").innerText="Game Over";
 
             break;
 
@@ -366,6 +371,8 @@ const displayController= function ()
         case "draw":
             console.log("It's a draw, well played both of you");
             document.querySelector("#finalResult").innerText="It's a draw, well played both of you";
+            document.querySelector("#gameStatus").innerText="Game Over";
+
             break;
 
 
