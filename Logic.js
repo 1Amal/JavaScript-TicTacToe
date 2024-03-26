@@ -14,6 +14,8 @@ const newGame=function()
         gameMemory.gameStatus.gameBoard=["null","null","null","null","null","null","null","null","null"];
         gameMemory.gameStatus.turnNo=0;
         gameMemory.gameStatus.lastTurn="aiBot";
+        document.querySelector("#winningConditions").innerText="";
+        document.querySelector("#turnNo").innerText = "";
         newDisplay.displayOut("newGame");
         playGame();
         return{newGame};
@@ -39,7 +41,7 @@ const newGame=function()
             {
                 gameMemory.gameStatus.turnNo+=1;
                 console.log(gameMemory.gameStatus.turnNo);
-                document.querySelector("#turnNo").innerText =gameMemory.playerDetails.playerName;
+                document.querySelector("#turnNo").innerText = gameMemory.playerDetails.playerName;
                 player();
                 checkForWinner();
                     
@@ -245,16 +247,25 @@ const newGame=function()
 //This will check if player has won        
         if (playerWonCondition1===true || playerWonCondition2===true || playerWonCondition3===true || playerWonCondition4===true || playerWonCondition5===true || playerWonCondition6===true || playerWonCondition7===true || playerWonCondition8===true)
             {
-                console.log("Player winning conditions "+ " 0,1,2:" + playerWonCondition1 + 
+                console.log("Player winning conditions "+ " 0,1,2: " + playerWonCondition1 + 
                 " 3,4,5: "+ playerWonCondition2 + 
                 " 6,7,8: "+ playerWonCondition3 + 
                 " 0,3,6: "+ playerWonCondition4 + 
                 " 1,4,7: "+ playerWonCondition5 + 
                 " 2,5,8: "+ playerWonCondition6 + 
                 " 0,4,8: "+ playerWonCondition7 + 
-                " 2,4,6: "+ playerWonCondition8);
+                " 2,4,6: "+ playerWonCondition8 );
 
+                document.querySelector("#winningConditions").innerText=("Player "+ " 0,1,2: " + playerWonCondition1 + 
+                " 3,4,5: "+ playerWonCondition2 + 
+                " 6,7,8: "+ playerWonCondition3 + 
+                " 0,3,6: "+ playerWonCondition4 + 
+                " 1,4,7: "+ playerWonCondition5 + 
+                " 2,5,8: "+ playerWonCondition6 + 
+                " 0,4,8: "+ playerWonCondition7 + 
+                " 2,4,6: "+ playerWonCondition8 );
 
+                
                 newDisplay.displayOut("playerWon");
                 gameOver();
 
@@ -267,14 +278,23 @@ const newGame=function()
         else if (aiBotWonCondition1===true || aiBotWonCondition2===true || aiBotWonCondition3===true || aiBotWonCondition4===true || aiBotWonCondition5===true || aiBotWonCondition6===true || aiBotWonCondition7===true || aiBotWonCondition8===true)
 
         {
-            console.log("aiBot winning conditions "+" 0,1,2:" + aiBotWonCondition1 + 
+            console.log("aiBot winning conditions "+" 0,1,2: " + aiBotWonCondition1 + 
                         " 3,4,5: "+ aiBotWonCondition2 + 
                         " 6,7,8: "+ aiBotWonCondition3 + 
                         " 0,3,6: "+ aiBotWonCondition4 + 
                         " 1,4,7: "+ aiBotWonCondition5 + 
                         " 2,5,8: "+ aiBotWonCondition6 + 
                         " 0,4,8: "+ aiBotWonCondition7 + 
-                        " 2,4,6: "+ aiBotWonCondition8);
+                        " 2,4,6: "+ aiBotWonCondition8 );
+
+            document.querySelector("#winningConditions").innerText=("aiBot "+" 0,1,2: " + aiBotWonCondition1 + 
+                        " 3,4,5: "+ aiBotWonCondition2 + 
+                        " 6,7,8: "+ aiBotWonCondition3 + 
+                        " 0,3,6: "+ aiBotWonCondition4 + 
+                        " 1,4,7: "+ aiBotWonCondition5 + 
+                        " 2,5,8: "+ aiBotWonCondition6 + 
+                        " 0,4,8: "+ aiBotWonCondition7 + 
+                        " 2,4,6: "+ aiBotWonCondition8 );
 
             newDisplay.displayOut("aiBotWon");
             gameOver();
@@ -365,11 +385,17 @@ const displayController= function ()
         case "playerWon":
             console.log("Winner is: " + gameMemory.playerDetails.playerName);
             document.querySelector("#finalResult").innerText=gameMemory.playerDetails.playerName;
+
+ 
+
+
+            
             break;
 
         case "aiBotWon":
             console.log("Winner is: AiBot");
             document.querySelector("#finalResult").innerText="aiBot";
+
             break;
 
         case "gameOver":
@@ -380,7 +406,8 @@ const displayController= function ()
             console.log("It's a draw, well played both of you");
             document.querySelector("#finalResult").innerText="It's a draw, well played both of you";
             break;
-        
+
+         
     }
 
     }
