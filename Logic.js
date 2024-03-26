@@ -348,7 +348,6 @@ const displayController= function ()
             break ;
         
         case "playerWon":
-            // gameMemory.playerDetails.playerName;
             console.log("Winner is: " + gameMemory.playerDetails.playerName);
             document.querySelector("#finalResult").innerText=gameMemory.playerDetails.playerName;
             document.querySelector("#gameStatus").innerText="Game Over";
@@ -383,7 +382,6 @@ const displayController= function ()
 
     const displayIn=function()
     {
-        // playerChoice=prompt("Please Enter Grid number between 0-9: ");
 
         const buttonGameStart=document.querySelector("#startGame");
         buttonGameStart.addEventListener("click",function()
@@ -415,7 +413,6 @@ const displayController= function ()
                 {
                     console.log("grid-1 pressed");
                     gameMemory.playerDetails.playerLastChoice=1;
-                    // document.querySelector("#grid-1").disabled = true;
 
                     gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
                     newGameRound.player();

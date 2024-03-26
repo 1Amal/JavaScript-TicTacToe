@@ -1,6 +1,7 @@
 html{
     font-size:12px;
 }
+
 h1
 {
     color: #1eb62df9;
@@ -36,19 +37,6 @@ h1
     column-gap: 5px;
 
 }
-    
-
-
-/* .gameStatus
-{
-
-}
-
-
-.gameControl
-{
-
-} */
 
 .boardInfo, td, tr
 {
@@ -59,13 +47,8 @@ border-collapse: collapse;
 
 .gameBoardContainer button
 {
-    /* padding:1rem; */
     width:4rem;
     height: 4rem;
     font-size: 1rem;
 }
 
-#grid-0
-{
-
-}
