@@ -151,7 +151,6 @@ const newGame=function()
 
 // Player win array for comparison
         const playerWin=[gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName]; 
-
 // aiBot win array for comparison
         const aiBotWin=["aiBot","aiBot","aiBot"]; 
 
@@ -173,7 +172,7 @@ const newGame=function()
 // Straight Line: All three Column wins:2,5,8 in any combination
         const winningCondition6=[gameMemory.gameStatus.gameBoard[2],gameMemory.gameStatus.gameBoard[5],gameMemory.gameStatus.gameBoard[8]];//[2,5,8];
 
-// Straight Line: All three Diagonal wins: 0,4,8 in any combination
+// Straight Line: All three Diagonal wins: 0,4,8 in any combinationgameMemory.gameStatus.turnNo
         const winningCondition7=[gameMemory.gameStatus.gameBoard[0],gameMemory.gameStatus.gameBoard[4],gameMemory.gameStatus.gameBoard[8]]; //[0,4,8];
 
 // Straight Line: All three Diagonal wins: 2,4,6 in any combination
@@ -183,7 +182,6 @@ const newGame=function()
 
 
 // Function to compare two arrays and if both arrays are equal will give out true and if they are different will give out false. Using this you can compare above win conditions against two fixed arrays of const aiBotWin=["aiBot","aiBot","aiBot"] which will give aiBot win condition and const playerWin=[gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName,gameMemory.playerDetails.playerName]; which will give player win condition. 
-
         const compareArrays = (a, b) =>
         a.length === b.length &&
         a.every((element, index) => element === b[index]);
@@ -237,7 +235,6 @@ const newGame=function()
 
                 return;
             }
-
 //This will check if the aiBot has won
 
         else if (aiBotWonCondition1===true || aiBotWonCondition2===true || aiBotWonCondition3===true || aiBotWonCondition4===true || aiBotWonCondition5===true || aiBotWonCondition6===true || aiBotWonCondition7===true || aiBotWonCondition8===true)
@@ -267,7 +264,7 @@ const newGame=function()
             return;
         }
 
-        else if (gameMemory.gameStatus.turnNo>=9)
+        else if (gameMemory.gameStatus.turnNo>=5)
         {
             console.log("Game end in a Draw");
             newDisplay.displayOut("draw");
