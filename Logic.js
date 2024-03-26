@@ -12,12 +12,13 @@ const newGame=function()
 
     {
         gameMemory.gameStatus.gameBoard=["null","null","null","null","null","null","null","null","null"];
+        newDisplay.displayOut("gameBoard");
         gameMemory.gameStatus.turnNo=0;
         gameMemory.gameStatus.lastTurn="aiBot";
         document.querySelector("#winningConditions").innerText="";
         document.querySelector("#turnNo").innerText = "";
         newDisplay.displayOut("newGame");
-        playGame();
+
         return{newGame};
 
     }
@@ -42,8 +43,8 @@ const newGame=function()
                 gameMemory.gameStatus.turnNo+=1;
                 console.log(gameMemory.gameStatus.turnNo);
                 document.querySelector("#turnNo").innerText = gameMemory.playerDetails.playerName;
-                player();
                 checkForWinner();
+                return;
                     
             }
 //This will run the function to generate aiBot response
@@ -56,6 +57,7 @@ const newGame=function()
                 document.querySelector("#turnNo").innerText ="aiBot";  
                 aiBot();
                 checkForWinner();
+                return;
 
             }
     }
@@ -80,7 +82,7 @@ const newGame=function()
         console.log(gameMemory.playerDetails.playerName +"'s Turn");
         document.querySelector("#turnNo").innerText =gameMemory.playerDetails.playerName;
         let playerChoice;
-        playerChoice=prompt("Please Enter Grid number between 0-9: ");
+        playerChoice=gameMemory.playerDetails.playerLastChoice;
 
 
         console.log("Players Choice of Gameboard Index is: " + playerChoice);
@@ -90,6 +92,9 @@ const newGame=function()
                 console.log("Null Array position, so safe to store player choice");
                 gameMemory.gameStatus.gameBoard[playerChoice]=gameMemory.playerDetails.playerName;
                 gameMemory.gameStatus.lastTurn=gameMemory.playerDetails.playerName;
+
+                newDisplay.displayOut("gameBoard");
+                playGame();
          
                 return;
             }
@@ -98,12 +103,11 @@ const newGame=function()
 
            {
                 console.log("Error Array not empty, so not safe to store player input, please try again");
-                player();
+
+                alert("Error Array not empty, so not safe to store player input, please try again");
                 return;
 
             }
-
-            playGame(); // Return to original function
 
     }
 
@@ -118,7 +122,12 @@ const newGame=function()
          
             console.log("Ok To store");
             gameMemory.gameStatus.gameBoard[nextChoice]="aiBot";
+
+            newDisplay.displayOut("gameBoard");
             console.log(gameMemory.gameStatus.gameBoard);
+
+            gameMemory.gameStatus.lastTurn="aiBot";
+
             return;
 
         }
@@ -127,14 +136,9 @@ const newGame=function()
             gameMemory.gameStatus.gameBoard[nextChoice]==="aiBot")
         {
             aiBot();
+            return;
         }
         
-        else
-        {
-            
-            console.log("Not ok to store");
-           
-        }
 
        return {aiBot}
     }
@@ -261,7 +265,7 @@ const newGame=function()
             return;
         }
 
-        else if (gameMemory.gameStatus.turnNo>=9)
+        else if (gameMemory.gameStatus.turnNo>=8)
         {
             console.log("Game end in a Draw");
             newDisplay.displayOut("draw");
@@ -341,7 +345,8 @@ const displayController= function ()
              
             break ;
         
-        case "playerWon":gameMemory.playerDetails.playerName
+        case "playerWon":
+            // gameMemory.playerDetails.playerName;
             console.log("Winner is: " + gameMemory.playerDetails.playerName);
             document.querySelector("#finalResult").innerText=gameMemory.playerDetails.playerName;
 
@@ -362,6 +367,7 @@ const displayController= function ()
             console.log("It's a draw, well played both of you");
             document.querySelector("#finalResult").innerText="It's a draw, well played both of you";
             break;
+
 
          
     }
@@ -390,8 +396,10 @@ const displayController= function ()
                     console.log("grid-0 pressed");
                     gameMemory.playerDetails.playerLastChoice=0;
                     gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
+                    newGameRound.player();
+
                     
-                    return 0;
+                    return;
                     
                 }
     
@@ -400,8 +408,10 @@ const displayController= function ()
                 {
                     console.log("grid-1 pressed");
                     gameMemory.playerDetails.playerLastChoice=1;
-                    document.querySelector("#grid-1").disabled = true;
-                    document.querySelector("#grid-1").innerText = "X";
+                    // document.querySelector("#grid-1").disabled = true;
+
+                    gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
+                    newGameRound.player();
 
                 }
     
@@ -409,42 +419,56 @@ const displayController= function ()
                 {
                     console.log("grid-2pressed");
                     gameMemory.playerDetails.playerLastChoice=2;
+                    gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
+                    newGameRound.player();
                 }
     
                 else if (button.id==="grid-3")
                 {
                     console.log("grid-3 pressed");
                     gameMemory.playerDetails.playerLastChoice=3;
+                    gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
+                    newGameRound.player();
                 }
     
                 else if (button.id==="grid-4")
                 {
                     console.log("grid-4 pressed");
                     gameMemory.playerDetails.playerLastChoice=4;
+                    gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
+                    newGameRound.player();
                 }
     
                 else if (button.id==="grid-5")
                 {
                     console.log("grid-5 pressed");
                     gameMemory.playerDetails.playerLastChoice=5;
+                    gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
+                    newGameRound.player();
                 }
     
                 else if (button.id==="grid-6")
                 {
                     console.log("grid-6 pressed");
                     gameMemory.playerDetails.playerLastChoice=6;
+                    gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
+                    newGameRound.player();
                 }
     
                 else if (button.id==="grid-7")
                 {
                     console.log("grid-7 pressed");
                     gameMemory.playerDetails.playerLastChoice=7;
+                    gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
+                    newGameRound.player();
                 }
     
                 else if (button.id==="grid-8")
                 {
                     console.log("grid-8 pressed");
                     gameMemory.playerDetails.playerLastChoice=8;
+                    gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
+                    newGameRound.player();
                 }
             }))
  
@@ -462,3 +486,4 @@ const displayController= function ()
 
 const newDisplay=displayController();
 const newGameRound=gameLogic();
+newGameRound.newGame();
