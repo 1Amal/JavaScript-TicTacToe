@@ -17,18 +17,23 @@
                 <div class="gameContainer">
                     <div class="gameDashboard">
                         <div class="gameControl">
-                            <p><label for="playerName">Player Name</label>
-                                <input id="playerName" type="text" name="playerName" placeholder="Please Enter Player Name" required></p>
+                            <form>
+                            <p>
+                                <label for="playerName">Player Name</label>
+                                <input id="playerName" type="text" name="playerName" placeholder="Please Enter Player Name" required minlength="1" maxlength="4">
+                                <button id="startGame" type="button">Start New Game</button>
+                            </p>
+                            </form>
                             
-                            <button id="startGame" type="button">Start New Game</button>
+                            
                         </div>
 
                         <div class="gameStatus">
-                        <p>Current Turn:<span id="turnNo"></span> </p>
-                        <p>Winning Conditions for: <span id="winningConditions"></span></p>
+                        <h2>Current Turn:<span id="turnNo"></span> </h2>
+                        <h2>Winning Conditions for: <span id="winningConditions"></span></h2>
                         <!-- <p>Player Wins: </p>
                         <p>aiBot Wins: </p> -->
-                        <p>Winner Is: <span id="finalResult"></span> </p>
+                        <h2>Winner Is: <span id="finalResult"></span> </h2>
                         </div>
 
 

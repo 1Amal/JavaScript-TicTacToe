@@ -83,47 +83,6 @@ const newGame=function()
         playerChoice=prompt("Please Enter Grid number between 0-9: ");
 
 
-
-        // function firstFunction(callback) {
-        //     console.log('First function executed.');
-            
-        //     // Execute the callback function
-        //     if (typeof callback === 'function') {
-        //         callback();
-        //     }
-        // }
-        
-        // function secondFunction() {
-        //     console.log('Second function executed.');
-        // }
-        
-        // // Execute functions sequentially with callback
-        // firstFunction(secondFunction); // Pass secondFunction as a callback to firstFunction
-
-
-
-        
-        
-        // const buttons=document.querySelectorAll('.gameInputButtons');
-        //     buttons.forEach((button)=>
-        //     button.addEventListener('click',()=>
-        //     {
-                   
-        //         if (button.id==="grid-0")
-        //         {
-        //             console.log("grid-0 pressed");
-        //             gameMemory.playerDetails.playerLastChoice=0;
-        //             gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
-
-        //             playerChoice=0;
-        //             console.log(playerChoice);
-
-        //             return;
-                    
-        //         }
-        //     }));
-
-
         console.log("Players Choice of Gameboard Index is: " + playerChoice);
                     
         if (gameMemory.gameStatus.gameBoard[playerChoice]==="null")
@@ -256,7 +215,7 @@ const newGame=function()
                 " 0,4,8: "+ playerWonCondition7 + 
                 " 2,4,6: "+ playerWonCondition8 );
 
-                document.querySelector("#winningConditions").innerText=("Player "+ " 0,1,2: " + playerWonCondition1 + 
+                document.querySelector("#winningConditions").innerText=(gameMemory.playerDetails.playerName + " 0,1,2: " + playerWonCondition1 + 
                 " 3,4,5: "+ playerWonCondition2 + 
                 " 6,7,8: "+ playerWonCondition3 + 
                 " 0,3,6: "+ playerWonCondition4 + 
@@ -382,14 +341,11 @@ const displayController= function ()
              
             break ;
         
-        case "playerWon":
+        case "playerWon":gameMemory.playerDetails.playerName
             console.log("Winner is: " + gameMemory.playerDetails.playerName);
             document.querySelector("#finalResult").innerText=gameMemory.playerDetails.playerName;
 
- 
-
-
-            
+   
             break;
 
         case "aiBotWon":
@@ -423,12 +379,7 @@ const displayController= function ()
 
         });
 
-
-
-
-        // while (gameMemory.gameStatus.lastTurn==="aiBot")
-        //     {
-    
+  
             const buttons=document.querySelectorAll('.gameInputButtons');
             buttons.forEach((button)=>
             button.addEventListener('click',()=>
@@ -440,13 +391,12 @@ const displayController= function ()
                     gameMemory.playerDetails.playerLastChoice=0;
                     gameMemory.gameStatus.lastTurn===gameMemory.playerDetails.playerName;
                     
-                    // newGameRound.playGame();
-                    // newGameRound.player(0);
                     return 0;
                     
                 }
     
-                else if (button.id==="grid-1")
+                else if (button.id==="grid-1")// newDisplay.displayIn();
+
                 {
                     console.log("grid-1 pressed");
                     gameMemory.playerDetails.playerLastChoice=1;
@@ -497,10 +447,6 @@ const displayController= function ()
                     gameMemory.playerDetails.playerLastChoice=8;
                 }
             }))
-        // }
-
-
-        // return{displayIn};
  
     }();
 
@@ -515,5 +461,4 @@ const displayController= function ()
 
 
 const newDisplay=displayController();
-// newDisplay.displayIn();
 const newGameRound=gameLogic();
